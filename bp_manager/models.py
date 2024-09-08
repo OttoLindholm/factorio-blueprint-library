@@ -12,3 +12,24 @@ class Tag(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Blueprint(models.Model):
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="blueprints",
+    )
+    created_time = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    blueprint_string = models.TextField()
+    blueprint_image = models.ImageField(upload_to="blueprints")
+    tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
+    likes = models.ManyToManyField(User, related_name="likes")
+
+    class Meta:
+        ordering = ["-created_time", ]
+
+    def __str__(self) -> str:
+        return f"{self.title} ({self.owner.username})"
