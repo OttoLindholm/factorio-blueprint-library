@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+# Creates a dir for the current user where their drawings are stored
+def user_blueprint_path(
+    instance: models.Model,
+    filename: str
+) -> str:
+    return f"user_{instance.id}/{filename}"
+
+
 class User(AbstractUser):
     def __str__(self) -> str:
         return self.username
@@ -24,7 +32,7 @@ class Blueprint(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     blueprint_string = models.TextField()
-    blueprint_image = models.ImageField(upload_to="blueprints")
+    blueprint_image = models.ImageField(upload_to=user_blueprint_path)
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
     likes = models.ManyToManyField(User, related_name="likes")
 
