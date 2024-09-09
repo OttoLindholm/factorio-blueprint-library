@@ -34,7 +34,7 @@ class Blueprint(models.Model):
     blueprint_string = models.TextField()
     blueprint_image = models.ImageField(upload_to=user_blueprint_path)
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
-    likes = models.ManyToManyField(User, related_name="likes")
+    likes = models.ManyToManyField(User, related_name="likes", blank=True)
 
     class Meta:
         ordering = ["-created_time", ]
