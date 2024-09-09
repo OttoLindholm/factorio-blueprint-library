@@ -7,7 +7,7 @@ def user_blueprint_path(
     instance: models.Model,
     filename: str
 ) -> str:
-    return f"user_{instance.id}/{filename}"
+    return f"user_{instance.owner.id}/{filename}"
 
 
 class User(AbstractUser):
