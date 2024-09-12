@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from bp_manager.forms import CommentaryForm, BlueprintForm
 from bp_manager.models import Blueprint, Commentary
@@ -70,3 +71,14 @@ class BlueprintUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return self.object.get_absolute_url()
+
+
+class BlueprintDeleteView(LoginRequiredMixin, DeleteView):
+    model = Blueprint
+    success_url = reverse_lazy("bp_manager:index")
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.user != self.request.user:
+            return HttpResponseForbidden("You are not allowed to delete this object.")
+        return obj
