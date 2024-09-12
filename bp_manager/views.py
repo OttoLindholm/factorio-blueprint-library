@@ -10,7 +10,7 @@ from django.views.generic import (
 )
 
 from bp_manager.forms import CommentaryForm, BlueprintForm
-from bp_manager.models import Blueprint, Commentary
+from bp_manager.models import Blueprint, Commentary, User
 from bp_manager.mixins import UserIsOwnerMixin
 
 
@@ -86,3 +86,16 @@ class BlueprintDeleteView(
 ):
     model = Blueprint
     success_url = reverse_lazy("bp_manager:index")
+
+
+class UserListView(ListView):
+    model = User
+    context_object_name = "user_list"
+    template_name = "bp_manager/user_list.html"
+    paginate_by = 10
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = "bp_manager/user_detail.html"
+    context_object_name = "user"
