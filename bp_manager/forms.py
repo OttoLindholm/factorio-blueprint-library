@@ -1,6 +1,6 @@
 from django import forms
 
-from bp_manager.models import Commentary
+from bp_manager.models import Commentary, Blueprint
 
 
 class CommentaryForm(forms.ModelForm):
@@ -19,3 +19,12 @@ class CommentaryForm(forms.ModelForm):
     class Meta:
         model = Commentary
         fields = ["content"]
+
+
+class BlueprintSearchForm(forms.Form):
+    model = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "tag"})
+    )
