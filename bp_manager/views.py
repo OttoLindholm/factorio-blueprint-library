@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
-from bp_manager.forms import CommentaryForm
+from bp_manager.forms import CommentaryForm, BlueprintForm
 from bp_manager.models import Blueprint, Commentary
 
 
@@ -39,3 +39,15 @@ class BlueprintDetailView(LoginRequiredMixin, DetailView):
         context = self.get_context_data(object=blueprint)
         context["form"] = form
         return self.render_to_response(context)
+
+
+class BlueprintCreateView(LoginRequiredMixin, CreateView):
+    model = Blueprint
+    form_class = BlueprintForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
