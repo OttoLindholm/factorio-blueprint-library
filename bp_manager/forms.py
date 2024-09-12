@@ -21,6 +21,13 @@ class CommentaryForm(forms.ModelForm):
         fields = ["content"]
 
 
+class BlueprintForm(forms.ModelForm):
+    class Meta:
+        model = Blueprint
+        fields = "__all__"
+        exclude = ["owner"]
+
+
 class BlueprintSearchForm(forms.Form):
     model = forms.CharField(
         max_length=255,
