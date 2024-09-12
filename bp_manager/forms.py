@@ -1,6 +1,6 @@
 from django import forms
 
-from bp_manager.models import Commentary, Blueprint
+from bp_manager.models import Commentary, Blueprint, User
 
 
 class CommentaryForm(forms.ModelForm):
@@ -35,3 +35,19 @@ class BlueprintSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "tag"})
     )
+
+
+class UserCreationForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2",)
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("username", "email",)
+
+
+class UserDeleteForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(), label="Password")
