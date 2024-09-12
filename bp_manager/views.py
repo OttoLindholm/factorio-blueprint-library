@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 
-from bp_manager.models import Blueprint
+from bp_manager.forms import CommentaryForm
+from bp_manager.models import Blueprint, Commentary
 
 
 class BlueprintListView(ListView):
@@ -16,3 +18,24 @@ class BlueprintDetailView(LoginRequiredMixin, DetailView):
     model = Blueprint
     template_name = "bp_manager/post_detail.html"
     context_object_name = "blueprint"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = CommentaryForm()
+        context["comments"] = Commentary.objects.filter(blueprint=self.object)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        blueprint = self.get_object()
+        form = CommentaryForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blueprint = blueprint
+            comment.user = self.request.user
+            comment.save()
+            return redirect("blog:post-detail", pk=blueprint.pk)
+
+        context = self.get_context_data(object=blueprint)
+        context["form"] = form
+        return self.render_to_response(context)
