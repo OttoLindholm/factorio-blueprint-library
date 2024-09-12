@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 # Creates a dir for the current user where their drawings are stored
@@ -41,6 +42,9 @@ class Blueprint(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} ({self.owner.username})"
+
+    def get_absolute_url(self):
+        return reverse("bp_manager:blueprint-detail", kwargs={"pk": self.pk})
 
 
 class Commentary(models.Model):
