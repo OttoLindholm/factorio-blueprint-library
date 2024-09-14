@@ -35,7 +35,6 @@ class Blueprint(models.Model):
     blueprint_string = models.TextField()
     blueprint_image = models.ImageField(upload_to=user_blueprint_path)
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
-    likes = models.ManyToManyField(User, related_name="likes", blank=True)
 
     class Meta:
         ordering = ["-created_time", ]
@@ -63,3 +62,16 @@ class Commentary(models.Model):
 
     class Meta:
         ordering = ["-created_time"]
+
+
+class Like(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="likes"
+    )
+    blueprint = models.ForeignKey(
+        Blueprint,
+        on_delete=models.CASCADE,
+        related_name="likes"
+    )
