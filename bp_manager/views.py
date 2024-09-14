@@ -3,12 +3,20 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import (
+    CreateView,
+    UpdateView,
+    DeleteView,
+    FormView,
+)
 
 from bp_manager.forms import (
     CommentaryForm,
     BlueprintForm,
-    UserRegistrationForm, UserAuthenticationForm, UserUpdateForm,
+    UserRegistrationForm,
+    UserAuthenticationForm,
+    UserUpdateForm,
+    UserDeleteForm,
 )
 from bp_manager.models import Blueprint, Commentary, User
 from bp_manager.mixins import UserIsOwnerMixin
@@ -70,8 +78,12 @@ class BlueprintUpdateView(
     model = Blueprint
     form_class = BlueprintForm
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
-        return reverse('user_detail', kwargs={'pk': self.object.pk})
+        return self.object.get_absolute_url()
 
 
 class BlueprintDeleteView(
@@ -121,3 +133,17 @@ class UserUpdateView(
 
     def get_success_url(self):
         return self.object.get_absolute_url()
+
+
+class UserDeleteView(LoginRequiredMixin, UserIsOwnerMixin, FormView):
+    form_class = UserDeleteForm
+    success_url = reverse_lazy("bp_manager:index")
+
+    def form_valid(self, form):
+        user = self.request.user
+        if user.check_password(form.cleaned_data["password"]):
+            user.delete()
+            return super().form_valid(form)
+        else:
+            form.add_error("password", "Incorrect password")
+            return self.form_invalid(form)
