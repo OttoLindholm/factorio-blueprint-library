@@ -38,8 +38,10 @@ class BlueprintSearchForm(forms.Form):
     )
 
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
         model = User
         fields = ("username", "email", "password1", "password2",)
 
