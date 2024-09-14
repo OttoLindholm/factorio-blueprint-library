@@ -2,18 +2,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from bp_manager.forms import (
     CommentaryForm,
     BlueprintForm,
-    UserRegistrationForm, UserAuthenticationForm,
+    UserRegistrationForm, UserAuthenticationForm, UserUpdateForm,
 )
 from bp_manager.models import Blueprint, Commentary, User
 from bp_manager.mixins import UserIsOwnerMixin
@@ -75,12 +70,8 @@ class BlueprintUpdateView(
     model = Blueprint
     form_class = BlueprintForm
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
     def get_success_url(self):
-        return self.object.get_absolute_url()
+        return reverse('user_detail', kwargs={'pk': self.object.pk})
 
 
 class BlueprintDeleteView(
@@ -107,12 +98,26 @@ class UserDetailView(DetailView):
 
 
 class UserRegisterView(CreateView):
+    model = User
     form_class = UserRegistrationForm
     template_name = "registration/register.html"
     success_url = reverse_lazy("bp_manager:login")
 
 
 class UserLoginView(LoginView):
+    model = User
     form_class = UserAuthenticationForm
     template_name = "registration/login.html"
     success_url = reverse_lazy("bp_manager:index")
+
+
+class UserUpdateView(
+    LoginRequiredMixin,
+    UserIsOwnerMixin,
+    UpdateView
+):
+    model = User
+    form_class = UserUpdateForm
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
