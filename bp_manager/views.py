@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -12,7 +13,7 @@ from django.views.generic import (
 from bp_manager.forms import (
     CommentaryForm,
     BlueprintForm,
-    UserRegistrationForm,
+    UserRegistrationForm, UserAuthenticationForm,
 )
 from bp_manager.models import Blueprint, Commentary, User
 from bp_manager.mixins import UserIsOwnerMixin
@@ -109,3 +110,9 @@ class UserRegisterView(CreateView):
     form_class = UserRegistrationForm
     template_name = "registration/register.html"
     success_url = reverse_lazy("bp_manager:login")
+
+
+class UserLoginView(LoginView):
+    form_class = UserAuthenticationForm
+    template_name = "registration/login.html"
+    success_url = reverse_lazy("bp_manager:index")
