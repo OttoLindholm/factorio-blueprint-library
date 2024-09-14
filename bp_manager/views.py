@@ -9,7 +9,11 @@ from django.views.generic import (
     DeleteView,
 )
 
-from bp_manager.forms import CommentaryForm, BlueprintForm
+from bp_manager.forms import (
+    CommentaryForm,
+    BlueprintForm,
+    UserRegistrationForm,
+)
 from bp_manager.models import Blueprint, Commentary, User
 from bp_manager.mixins import UserIsOwnerMixin
 
@@ -99,3 +103,9 @@ class UserDetailView(DetailView):
     model = User
     template_name = "bp_manager/user_detail.html"
     context_object_name = "user"
+
+
+class UserRegisterView(CreateView):
+    form_class = UserRegistrationForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("bp_manager:login")
