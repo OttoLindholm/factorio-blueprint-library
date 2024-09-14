@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from bp_manager.models import Commentary, Blueprint, User
 
@@ -37,8 +38,8 @@ class BlueprintSearchForm(forms.Form):
     )
 
 
-class UserCreationForm(forms.ModelForm):
-    class Meta:
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = ("username", "email", "password1", "password2",)
 
