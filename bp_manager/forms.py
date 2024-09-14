@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from bp_manager.models import Commentary, Blueprint, User
 
@@ -44,6 +44,11 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2",)
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(label='Username', max_length=254)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 
 class UserUpdateForm(forms.ModelForm):
