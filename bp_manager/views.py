@@ -113,7 +113,7 @@ class UserRegisterView(CreateView):
     model = User
     form_class = UserRegistrationForm
     template_name = "registration/register.html"
-    success_url = reverse_lazy("bp_manager:login")
+    success_url = reverse_lazy("bp_manager:user-login")
 
 
 class UserLoginView(LoginView):
