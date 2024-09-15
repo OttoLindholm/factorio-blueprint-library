@@ -6,19 +6,27 @@
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="col-12 col-md-5">
-        {% if form.errors %}
-          <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
+        <div class="card mt-3">
 
-        <h1>Login</h1>
+          <div class="card-title text-center">
+            <h1>Login</h1>
+          </div>
 
-        <form method="post" action="{% url 'bp_manager:user-login' %}">
-          {% csrf_token %}
-          {{ form|crispy }}
+          <div class="card-body">
+            {% if form.errors %}
+              <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
 
-          <input type="submit" value="Login" class="btn btn-primary"/>
-          <input type="hidden" name="next" value="{{ next }}"/>
-        </form>
+            <form method="post" action="{% url 'bp_manager:user-login' %}">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <div class="d-grid justify-content-center">
+                <input type="submit" value="Login" class="btn btn-primary"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
 
     </div>
