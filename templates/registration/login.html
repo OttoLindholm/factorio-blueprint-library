@@ -1,32 +1,19 @@
-{% extends "base.html" %}
+{% extends "includes/form_card.html" %}
 {% load crispy_forms_filters %}
 
 
-{% block content %}
-  <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-5">
-      <div class="card mt-3">
-
-        <div class="card-title text-center">
-          <h1>Login</h1>
-        </div>
-
-        <div class="card-body">
-          {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-          {% endif %}
-
-          <form method="post" action="{% url 'bp_manager:user-login' %}">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <div class="d-grid justify-content-center">
-              <input type="submit" value="Login" class="btn btn-primary"/>
-              <input type="hidden" name="next" value="{{ next }}"/>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
+{% block form_title %}
+  <h3>Login</h3>
 {% endblock %}
+
+{% block form_body %}
+  <form method="post" action="{% url 'bp_manager:user-login' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-grid justify-content-center">
+      <input type="submit" value="Login" class="btn btn-primary"/>
+      <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+  </form>
+{% endblock %}
+
