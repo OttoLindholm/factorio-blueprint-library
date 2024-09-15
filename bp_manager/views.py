@@ -32,7 +32,7 @@ class BlueprintListView(ListView):
 
 class BlueprintDetailView(LoginRequiredMixin, DetailView):
     model = Blueprint
-    template_name = "bp_manager/post_detail.html"
+    template_name = "bp_manager/blueprint_detail.html"
     context_object_name = "blueprint"
 
     def get_context_data(self, **kwargs):
