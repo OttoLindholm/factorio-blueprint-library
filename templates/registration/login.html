@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block form_body %}
-  <form method="post" action="{% url 'bp_manager:user-login' %}">
+  <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     {{ form|crispy }}
     <div class="d-grid justify-content-center">

@@ -14,7 +14,6 @@ from bp_manager.forms import (
     CommentaryForm,
     BlueprintForm,
     UserRegistrationForm,
-    UserAuthenticationForm,
     UserUpdateForm,
     UserDeleteForm,
 )
@@ -114,13 +113,6 @@ class UserRegisterView(CreateView):
     form_class = UserRegistrationForm
     template_name = "registration/register.html"
     success_url = reverse_lazy("bp_manager:user-login")
-
-
-class UserLoginView(LoginView):
-    model = User
-    form_class = UserAuthenticationForm
-    template_name = "registration/login.html"
-    success_url = reverse_lazy("bp_manager:index")
 
 
 class UserUpdateView(

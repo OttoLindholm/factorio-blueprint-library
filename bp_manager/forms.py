@@ -46,11 +46,6 @@ class UserRegistrationForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2",)
 
 
-class UserAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label='Username', max_length=254)
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-
-
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
