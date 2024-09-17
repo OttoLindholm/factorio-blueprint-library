@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient" style="background-color: #070F2B;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class='bx bx-cog bx-md'></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item "><a class="nav-link active" href="{% url 'bp_manager:index' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'bp_manager:user-list' %}">All users</a></li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ user.get_absolute_url }}">
+              <i class="bx bx-user-circle bx-sm"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <form class="d-flex" action="{% url 'logout' %}?next={{ request.path }}" method="post"
+                  style="display:inline;">
+              {% csrf_token %}
+              <button class="nav-link active" type="submit"
+                      style="background-color: transparent; border: none;">
+                <i class="bx bx-log-out bx-sm"></i>
+              </button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'login' %}?next={{ request.path }}">
+              <i class='bx bx-log-in bx-sm'></i>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
