@@ -1,4 +1,28 @@
+html, body {
+    height: 100%;
+    --navi-color-dark: #070F2B;
+    --navi-color-medium: #1B1A55;
+    --navi-color-light: #535C91;
+    --navi-color-bg: #9290C3;
+}
+
+body {
+    background-color: var(--navi-color-bg);
+}
+
 .fixed-square {
     width: 100%;
     position: relative;
+}
+
+.form-text {
+    color: white;
+}
+
+.form-control {
+    background-color: var(--navi-color-light);
+}
+
+.btn {
+    background-color: var(--navi-color-dark);
 }
