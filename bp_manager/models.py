@@ -75,3 +75,6 @@ class Like(models.Model):
         on_delete=models.CASCADE,
         related_name="likes"
     )
+
+    class Meta:
+        unique_together = (("user", "blueprint"),)
