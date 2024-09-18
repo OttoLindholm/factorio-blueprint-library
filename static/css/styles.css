@@ -8,11 +8,26 @@ html, body {
 
 body {
     background-color: var(--navi-color-bg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .fixed-square {
     width: 100%;
     position: relative;
+}
+
+.navbar {
+    background-color: var(--navi-color-dark);
+}
+
+.card {
+    background-color: var(--navi-color-medium);
+    color: white;
+}
+
+.card.fixed-square {
+    background-color: var(--navi-color-light);
 }
 
 .form-text {
@@ -25,4 +40,22 @@ body {
 
 .btn {
     background-color: var(--navi-color-dark);
+}
+
+.page-link {
+    background-color: var(--navi-color-dark);
+    color: white;
+    border-color: var(--secondary);
+}
+
+.page-item.disabled .page-link {
+    background-color: var(--navi-color-light);
+    color: white;
+    border-color: var(--secondary);
+}
+
+.page-item.active .page-link {
+    background-color: var(--navi-color-medium);
+    color: white;
+    border-color: var(--secondary);
 }
