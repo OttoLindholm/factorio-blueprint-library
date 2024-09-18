@@ -26,7 +26,7 @@ class BlueprintListView(ListView):
     context_object_name = "blueprint_list"
     template_name = "bp_manager/blueprint_list.html"
     queryset = Blueprint.objects.select_related("owner")
-    paginate_by = 6
+    paginate_by = 8
 
 
 class BlueprintDetailView(LoginRequiredMixin, DetailView):
