@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 
   <div class="container">
     <div class="row">
       {% for blueprint in blueprint_list %}
         <div class="col-12 col-md-3">
-          <div class="card fixed-square my-3 bg-gradient">
+          <div class="card fixed-square my-2 bg-gradient">
             <div class="card-body p-1">
               <img src="{{ blueprint.blueprint_image.url }}" class="card-img-top" alt="{{ blueprint.title }}">
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer d-flex justify-content-between">
               <h5 class="card-title text-truncate">{{ blueprint.title }}</h5>
+              <form action="{% url 'bp_manager:toggle-like' blueprint.pk %}" method="POST" style="margin: 0;">
+                {% csrf_token %}
+                <button class="like-btn d-flex align-items-center" type="submit">
+                  {% if blueprint.pk in liked_blueprints %}
+                    <i class='bx bxs-heart bx-sm'></i>
+                  {% else %}
+                    <i class='bx bx-heart bx-sm'></i>
+                  {% endif %}
+                  <p class="h5 m-0">{{ blueprint.likes.count }}</p>
+                </button>
+              </form>
             </div>
           </div>
         </div>
