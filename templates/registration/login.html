@@ -11,7 +11,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <div class="d-grid justify-content-center">
-      <input type="submit" value="Login" class="btn btn-secondary text-white bg-gradient"/>
+      <input type="submit" value="Login" class="btn text-white bg-gradient"/>
       <input type="hidden" name="next" value="{{ next }}"/>
     </div>
   </form>
