@@ -41,7 +41,7 @@ body {
     cursor: default;
 }
 
-.page-link {
+.page-link, .page-link:hover  {
     color: white;
     border-color: var(--navi-color-medium);
     background-color: var(--navi-color-medium);

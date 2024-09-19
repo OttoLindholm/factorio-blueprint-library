@@ -2,18 +2,18 @@
   <ul class="pagination my-2 justify-content-center">
     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
       <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"
-         class="page-link">
+         class="page-link bg-gradient">
         <i class="bx bx-left-arrow-alt"></i>
       </a>
     </li>
 
     <li class="page-item active">
-      <span class="page-link">{{ page_obj.number }} of {{ paginator.num_pages }}</span>
+      <span class="page-link bg-gradient">{{ page_obj.number }} of {{ paginator.num_pages }}</span>
     </li>
 
     <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
       <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}"
-         class="page-link">
+         class="page-link bg-gradient">
         <i class="bx bx-right-arrow-alt"></i>
       </a>
     </li>
