@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
@@ -17,7 +18,7 @@ from bp_manager.forms import (
     UserUpdateForm,
     UserDeleteForm,
 )
-from bp_manager.models import Blueprint, Commentary, User
+from bp_manager.models import Blueprint, Commentary, User, Like
 from bp_manager.mixins import UserIsOwnerMixin
 
 
@@ -27,6 +28,16 @@ class BlueprintListView(ListView):
     template_name = "bp_manager/blueprint_list.html"
     queryset = Blueprint.objects.select_related("owner")
     paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        liked_blueprints = []
+        if user.is_authenticated:
+            liked_blueprints = Like.objects.filter(user=user).values_list("blueprint_id", flat=True)
+
+        context["liked_blueprints"] = liked_blueprints
+        return context
 
 
 class BlueprintDetailView(LoginRequiredMixin, DetailView):
@@ -139,3 +150,13 @@ class UserDeleteView(LoginRequiredMixin, UserIsOwnerMixin, FormView):
         else:
             form.add_error("password", "Incorrect password")
             return self.form_invalid(form)
+
+
+@login_required
+def toggle_like(request, pk):
+    blueprint = get_object_or_404(Blueprint, pk=pk)
+    user = request.user
+    like, created = Like.objects.get_or_create(blueprint=blueprint, user=user)
+    if not created:
+        like.delete()
+    return redirect("bp_manager:index")
