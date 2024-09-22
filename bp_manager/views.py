@@ -35,8 +35,11 @@ class BlueprintListView(ListView):
             "tags", "comments"
         )
         query = self.request.GET.get("query", "")
+        tag = self.request.GET.get("tag", "")
 
-        if query:
+        if tag:
+            queryset = queryset.filter(tags__name=tag).distinct()
+        elif query:
             queryset = queryset.filter(
                 Q(owner__username__icontains=query)
                 | Q(title__icontains=query)

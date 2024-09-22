@@ -17,7 +17,8 @@
               <div class="card-footer text-center bg-gradient">
                 {% for tag in blueprint.tags.all %}
                   <span class="text d-inline">
-                  <a class="text-white" href="#">{{ tag.name }}</a>
+                  <a class="text-white"
+                     href="{% url 'bp_manager:index' %}?tag={{ tag.name }}&query={{ request.GET.query }}">{{ tag.name }}</a>
                   </span>
                 {% endfor %}
               </div>
