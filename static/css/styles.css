@@ -1,13 +1,16 @@
 html, body {
     height: 100%;
-    --navi-color-dark: #070F2B;
-    --navi-color-medium: #1B1A55;
-    --navi-color-light: #535C91;
-    --navi-color-bg: #9290C3;
+    --charcoal7: #36454F;
+    --charcoal6: #495D6A;
+    --charcoal5: #5B7586;
+    --charcoal4: #718C9E;
+    --charcoal3: #8CA2B0;
+    --charcoal2: #A7B8C3;
+    --charcoal1: #C3CED6;
 }
 
 body {
-    background-color: var(--navi-color-bg);
+    background-color: var(--charcoal1);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -18,41 +21,61 @@ body {
 }
 
 .navbar, .btn {
-    background-color: var(--navi-color-dark);
+    background-color: var(--charcoal7);
 }
 
 .card {
-    background-color: var(--navi-color-medium);
-    color: white;
+    background-color: var(--charcoal6);
 }
 
-.card.fixed-square, .form-control {
-    background-color: var(--navi-color-light);
+.card.fixed-square {
+    background-color: var(--charcoal3);
 }
 
-.form-text {
-    color: white;
+.form-control,
+.form-control:focus {
+    background-color: var(--charcoal1);
+}
+
+a.custom-card,
+a.custom-card:hover {
+    text-decoration: none;
 }
 
 .like-btn {
     background-color: transparent;
     border: none;
     padding: 0;
-    cursor: default;
 }
 
-.page-link, .page-link:hover  {
+
+.page-link,
+.page-link:hover,
+.accordion-button,
+.accordion-button:not(.collapse) {
     color: white;
-    border-color: var(--navi-color-medium);
-    background-color: var(--navi-color-medium);
+    border-color: var(--charcoal5);
+    background-color: var(--charcoal5);
+}
+
+.accordion-button:focus {
+    color: white;
+    outline: none;
+    box-shadow: none;
+}
+
+.list-group-item, .accordion-item {
+    background-color: var(--charcoal4);
 }
 
 .page-item.disabled .page-link {
-    border-color: var(--navi-color-light);
-    background-color: var(--navi-color-light);
+    border-color: var(--charcoal3);
+    background-color: var(--charcoal3);
 }
 
 .page-item.active .page-link {
-    border-color: var(--navi-color-light);
-    background-color: var(--navi-color-medium);
+    border-color: var(--charcoal3);
+    background-color: var(--charcoal5);
 }
+
+
