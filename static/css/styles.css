@@ -79,3 +79,6 @@ a.custom-card:hover {
 }
 
 
+#div_id_query {
+    margin-bottom: 0 !important;
+}
