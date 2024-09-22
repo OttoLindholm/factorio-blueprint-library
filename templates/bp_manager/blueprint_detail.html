@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-10">
+      <div class="card my-3 text-light bg-gradient">
+        <h1 class="mb-1 text-center card-header">{{ blueprint.title }}</h1>
+        <div class="card-body">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ blueprint.blueprint_image.url }}" class="img-fluid rounded"
+                   alt="{{ blueprint.title }}">
+
+              <div class="card-footer text-center bg-gradient">
+                {% for tag in blueprint.tags.all %}
+                  <span class="text d-inline">
+                  <a class="text-white" href="#">{{ tag.name }}</a>
+                  </span>
+                {% endfor %}
+              </div>
+
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body">
+
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item bg-gradient">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button bg-gradient" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Description
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        {{ blueprint.description }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header d-flex justify-content-between align-items-center" id="headingTwo">
+                      <button class="accordion-button bg-gradient collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Blueprint string
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                         data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="row text-center">
+                          <button class="copyBtn btn btn-secondary bg-gradient" data-copy-target="blueprint_string">
+                            Copy
+                          </button>
+                          <p class="mt-2" id="copyMessage"></p>
+                        </div>
+
+                        <p class="overflow-auto" id="blueprint_string"
+                           style="max-height: 150px">{{ blueprint.blueprint_string }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2 d-flex justify-content-between">
+            <span class="card-title">
+              Created by
+              <a class="fw-bold text-white"
+                 href="{{ blueprint.owner.get_absolute_url }}">{{ blueprint.owner.username }}</a>
+            </span>
+            <span class="card-title">{{ blueprint.created_time }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <ul class="list-group bg-gradient">
+            <li class="list-group-item">
+              {% if user.is_authenticated %}
+                <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' pk=blueprint.pk %}">
+                  {% csrf_token %}
+                  {{ commentary_form|crispy }}
+                  <input class="btn text-white bg-gradient" type="submit" value="Submit">
+                  <input class="btn text-white bg-gradient" type="reset" value="Clear">
+                </form>
+              {% else %}
+                <div class="d-flex justify-content-center">
+                  <p>
+                    You should
+                    <a href="{% url 'login' %}?next={{ request.path }}">log in </a>
+                    to add comments!
+                  </p>
+                </div>
+              {% endif %}
+            </li>
+
+            {% for comment in comments %}
+              <li class="list-group-item text-light">
+                <h6 class="fw-bold">{{ comment.user.username }}</h6>
+                <p>{{ comment.content }}</p>
+                <small class="d-flex justify-content-end">{{ comment.created_time }}</small>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/copy_to_clipboard.js' %}"></script>
+{% endblock %}
