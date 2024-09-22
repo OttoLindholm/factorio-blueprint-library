@@ -7,15 +7,22 @@
       {% for blueprint in blueprint_list %}
         <div class="col-12 col-md-3">
           <div class="card fixed-square my-2 bg-gradient">
-            <div class="card-body p-1">
-              <img src="{{ blueprint.blueprint_image.url }}" class="card-img-top" alt="{{ blueprint.title }}">
-            </div>
+            <a class="custom-card" href="{% url 'bp_manager:blueprint-detail' pk=blueprint.pk %}">
+              <div class="card-body p-1">
+                <img src="{{ blueprint.blueprint_image.url }}" class="card-img-top" alt="{{ blueprint.title }}">
+              </div>
+            </a>
 
-            <div class="card-footer d-flex justify-content-between">
+            <div class="card-footer text-light d-flex justify-content-between">
               <h5 class="card-title text-truncate">{{ blueprint.title }}</h5>
-              <form action="{% url 'bp_manager:toggle-like' blueprint.pk %}" method="POST" style="margin: 0;">
+
+              <form class="d-flex" action="{% url 'bp_manager:toggle-like' blueprint.pk %}" method="POST" style="margin: 0;">
+                <div class="d-flex align-items-center">
+                  <i class="bx bx-comment bx-sm"></i>
+                  <p class="h5 m-0">{{ blueprint.comments.count }}</p>
+                </div>
                 {% csrf_token %}
-                <button class="like-btn d-flex align-items-center" type="submit">
+                <button class="like-btn text-light d-flex align-items-center" type="submit">
                   {% if blueprint.pk in liked_blueprints %}
                     <i class='bx bxs-heart bx-sm'></i>
                   {% else %}
@@ -30,5 +37,4 @@
       {% endfor %}
     </div>
   </div>
-
 {% endblock %}
