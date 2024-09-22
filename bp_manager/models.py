@@ -4,10 +4,7 @@ from django.urls import reverse
 
 
 # Creates a dir for the current user where their drawings are stored
-def user_blueprint_path(
-    instance: models.Model,
-    filename: str
-) -> str:
+def user_blueprint_path(instance: models.Model, filename: str) -> str:
     return f"user_{instance.owner.id}/{filename}"
 
 
@@ -37,7 +34,9 @@ class Blueprint(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
     class Meta:
-        ordering = ["-created_time", ]
+        ordering = [
+            "-created_time",
+        ]
 
     def __str__(self) -> str:
         return f"{self.title} ({self.owner.username})"
@@ -47,15 +46,9 @@ class Blueprint(models.Model):
 
 
 class Commentary(models.Model):
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="comments"
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     blueprint = models.ForeignKey(
-        Blueprint,
-        on_delete=models.CASCADE,
-        related_name="comments"
+        Blueprint, on_delete=models.CASCADE, related_name="comments"
     )
     created_time = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
@@ -65,15 +58,9 @@ class Commentary(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="likes"
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="likes")
     blueprint = models.ForeignKey(
-        Blueprint,
-        on_delete=models.CASCADE,
-        related_name="likes"
+        Blueprint, on_delete=models.CASCADE, related_name="likes"
     )
 
     class Meta:

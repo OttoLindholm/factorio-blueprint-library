@@ -12,35 +12,29 @@ from bp_manager.views import (
     UserUpdateView,
     UserDeleteView,
     toggle_like,
+    add_comment,
 )
 
 urlpatterns = [
     path("", BlueprintListView.as_view(), name="index"),
     path(
-        "blueprints/<int:pk>/",
-        BlueprintDetailView.as_view(),
-        name="blueprint-detail"
+        "blueprints/<int:pk>/", BlueprintDetailView.as_view(), name="blueprint-detail"
     ),
-    path(
-        "blueprints/create/",
-        BlueprintCreateView.as_view(),
-        name="blueprint-create"
-    ),
+    path("blueprints/create/", BlueprintCreateView.as_view(), name="blueprint-create"),
     path(
         "blueprints/<int:pk>/update/",
         BlueprintUpdateView.as_view(),
-        name="blueprint-update"
+        name="blueprint-update",
     ),
     path(
         "blueprints/<int:pk>/delete/",
         BlueprintDeleteView.as_view(),
-        name="blueprint-delete"
+        name="blueprint-delete",
     ),
     path("blueprints/<int:pk>/like/", toggle_like, name="toggle-like"),
+    path("blueprints/<int:pk>/comment/", add_comment, name="add-comment"),
     path("users/", UserListView.as_view(), name="user-list"),
-    path(
-        "uers/<int:pk>/", UserDetailView.as_view(), name="user-detail"
-    ),
+    path("uers/<int:pk>/", UserDetailView.as_view(), name="user-detail"),
     path("users/register/", UserRegisterView.as_view(), name="user-register"),
     path(
         "users/<int:pk>/update/",

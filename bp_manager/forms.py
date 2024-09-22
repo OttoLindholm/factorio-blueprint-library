@@ -34,7 +34,7 @@ class BlueprintSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "tag"})
+        widget=forms.TextInput(attrs={"placeholder": "tag"}),
     )
 
 
@@ -43,13 +43,21 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2",)
+        fields = (
+            "username",
+            "email",
+            "password1",
+            "password2",
+        )
 
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("username", "email",)
+        fields = (
+            "username",
+            "email",
+        )
 
 
 class UserDeleteForm(forms.Form):

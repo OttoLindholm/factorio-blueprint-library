@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -26,7 +25,9 @@ class BlueprintListView(ListView):
     model = Blueprint
     context_object_name = "blueprint_list"
     template_name = "bp_manager/blueprint_list.html"
-    queryset = Blueprint.objects.select_related("owner")
+    queryset = Blueprint.objects.select_related("owner").prefetch_related(
+        "comments", "tags"
+    )
     paginate_by = 8
 
     def get_context_data(self, **kwargs):
@@ -34,37 +35,27 @@ class BlueprintListView(ListView):
         user = self.request.user
         liked_blueprints = []
         if user.is_authenticated:
-            liked_blueprints = Like.objects.filter(user=user).values_list("blueprint_id", flat=True)
+            liked_blueprints = Like.objects.filter(user=user).values_list(
+                "blueprint_id", flat=True
+            )
 
         context["liked_blueprints"] = liked_blueprints
         return context
 
 
-class BlueprintDetailView(LoginRequiredMixin, DetailView):
+class BlueprintDetailView(DetailView):
     model = Blueprint
     template_name = "bp_manager/blueprint_detail.html"
     context_object_name = "blueprint"
+    queryset = Blueprint.objects.prefetch_related("tags")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = CommentaryForm()
-        context["comments"] = Commentary.objects.filter(blueprint=self.object)
+        context["commentary_form"] = CommentaryForm()
+        context["comments"] = Commentary.objects.filter(
+            blueprint=self.object
+        ).select_related("user")
         return context
-
-    def post(self, request, *args, **kwargs):
-        blueprint = self.get_object()
-        form = CommentaryForm(request.POST)
-
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.blueprint = blueprint
-            comment.user = self.request.user
-            comment.save()
-            return redirect("blog:post-detail", pk=blueprint.pk)
-
-        context = self.get_context_data(object=blueprint)
-        context["form"] = form
-        return self.render_to_response(context)
 
 
 class BlueprintCreateView(LoginRequiredMixin, CreateView):
@@ -83,7 +74,6 @@ class BlueprintUpdateView(
     LoginRequiredMixin,
     UserIsOwnerMixin,
     UpdateView,
-
 ):
     model = Blueprint
     form_class = BlueprintForm
@@ -100,7 +90,6 @@ class BlueprintDeleteView(
     LoginRequiredMixin,
     UserIsOwnerMixin,
     DeleteView,
-
 ):
     model = Blueprint
     success_url = reverse_lazy("bp_manager:index")
@@ -126,11 +115,7 @@ class UserRegisterView(CreateView):
     success_url = reverse_lazy("bp_manager:user-login")
 
 
-class UserUpdateView(
-    LoginRequiredMixin,
-    UserIsOwnerMixin,
-    UpdateView
-):
+class UserUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
 
@@ -160,3 +145,15 @@ def toggle_like(request, pk):
     if not created:
         like.delete()
     return redirect("bp_manager:index")
+
+
+def add_comment(request, pk):
+    blueprint = get_object_or_404(Blueprint, pk=pk)
+    if request.method == "POST":
+        form = CommentaryForm(request.POST)
+        if form.is_valid():
+            commentary = form.save(commit=False)
+            commentary.user = request.user
+            commentary.blueprint = blueprint
+            commentary.save()
+    return redirect("bp_manager:blueprint-detail", pk=blueprint.pk)
