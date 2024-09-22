@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -16,6 +17,7 @@ from bp_manager.forms import (
     UserRegistrationForm,
     UserUpdateForm,
     UserDeleteForm,
+    BlueprintSearchForm,
 )
 from bp_manager.models import Blueprint, Commentary, User, Like
 from bp_manager.mixins import UserIsOwnerMixin
@@ -25,20 +27,35 @@ class BlueprintListView(ListView):
     model = Blueprint
     context_object_name = "blueprint_list"
     template_name = "bp_manager/blueprint_list.html"
-    queryset = Blueprint.objects.select_related("owner").prefetch_related(
-        "comments", "tags"
-    )
+
     paginate_by = 8
+
+    def get_queryset(self):
+        queryset = Blueprint.objects.select_related("owner").prefetch_related(
+            "tags", "comments"
+        )
+        query = self.request.GET.get("query", "")
+
+        if query:
+            queryset = queryset.filter(
+                Q(owner__username__icontains=query)
+                | Q(title__icontains=query)
+                | Q(tags__name__icontains=query)
+            ).distinct()
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         liked_blueprints = []
+
         if user.is_authenticated:
             liked_blueprints = Like.objects.filter(user=user).values_list(
                 "blueprint_id", flat=True
             )
 
+        context["search_form"] = BlueprintSearchForm(self.request.GET or None)
         context["liked_blueprints"] = liked_blueprints
         return context
 
