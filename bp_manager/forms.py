@@ -30,11 +30,17 @@ class BlueprintForm(forms.ModelForm):
 
 
 class BlueprintSearchForm(forms.Form):
-    model = forms.CharField(
+    query = forms.CharField(
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "tag"}),
+        widget=forms.TextInput(
+            attrs={
+                "type": "search",
+                "placeholder": "Search blueprints",
+                "aria-label": "Search"
+            }
+        ),
     )
 
 
