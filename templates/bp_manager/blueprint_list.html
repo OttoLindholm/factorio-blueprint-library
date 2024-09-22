@@ -4,6 +4,8 @@
 
   <div class="container">
     <div class="row">
+      {% include "includes/search_form.html" %}
+
       {% for blueprint in blueprint_list %}
         <div class="col-12 col-md-3">
           <div class="card fixed-square my-2 bg-gradient">
@@ -16,8 +18,9 @@
             <div class="card-footer text-light d-flex justify-content-between">
               <h5 class="card-title text-truncate">{{ blueprint.title }}</h5>
 
-              <form class="d-flex" action="{% url 'bp_manager:toggle-like' blueprint.pk %}" method="POST" style="margin: 0;">
-                <div class="d-flex align-items-center">
+              <form class="d-flex" action="{% url 'bp_manager:toggle-like' blueprint.pk %}" method="POST"
+                    style="margin: 0;">
+                <div class="d-flex align-items-center mx-2">
                   <i class="bx bx-comment bx-sm"></i>
                   <p class="h5 m-0">{{ blueprint.comments.count }}</p>
                 </div>
