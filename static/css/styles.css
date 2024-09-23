@@ -40,6 +40,10 @@ body {
     background-color: var(--charcoal1);
 }
 
+.form-text {
+    color: white;
+}
+
 a.image-ref,
 a.image-ref:hover {
     text-decoration: none;
