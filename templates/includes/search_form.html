@@ -8,5 +8,11 @@
     <button class="btn text-white text-center bg-gradient" type="submit">
       <i class="bx bx-search"></i>
     </button>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'bp_manager:blueprint-create' %}" class="btn text-white text-center bg-gradient ms-2">
+        <i class='bx bx-plus'></i>
+      </a>
+    {% endif %}
   </form>
 </div>

@@ -23,6 +23,7 @@ body {
 
 .btn,
 .navbar {
+    color: white;
     background-color: var(--charcoal7);
 }
 
