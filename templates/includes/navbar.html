@@ -16,9 +16,6 @@
           <a class="nav-link active" href="{% url 'bp_manager:index' %}">Home</a>
         </li>
       
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'bp_manager:user-list' %}">All users</a>
-        </li>
 
         {% if user.is_authenticated %}
           <li class="nav-item">
@@ -26,7 +23,7 @@
               <i class="bx bx-user-circle bx-sm"></i>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <form class="d-flex" action="{% url 'logout' %}?next={{ request.path }}" method="post"
                   style="display:inline;">

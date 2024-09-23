@@ -12,6 +12,9 @@ class User(AbstractUser):
     def __str__(self) -> str:
         return self.username
 
+    def get_absolute_url(self):
+        return reverse("bp_manager:user-detail", kwargs={"pk": self.pk})
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
