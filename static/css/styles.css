@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     --charcoal7: #36454F;
     --charcoal6: #495D6A;
@@ -20,7 +21,8 @@ body {
     position: relative;
 }
 
-.navbar, .btn {
+.btn,
+.navbar {
     background-color: var(--charcoal7);
 }
 
@@ -37,8 +39,8 @@ body {
     background-color: var(--charcoal1);
 }
 
-a.custom-card,
-a.custom-card:hover {
+a.image-ref,
+a.image-ref:hover {
     text-decoration: none;
 }
 
@@ -50,21 +52,15 @@ a.custom-card:hover {
 
 
 .page-link,
-.page-link:hover,
-.accordion-button,
-.accordion-button:not(.collapse) {
+.page-link:hover {
     color: white;
     border-color: var(--charcoal5);
     background-color: var(--charcoal5);
 }
 
-.accordion-button:focus {
-    color: white;
-    outline: none;
-    box-shadow: none;
-}
 
-.list-group-item, .accordion-item {
+.list-group-item,
+.accordion-item {
     background-color: var(--charcoal4);
 }
 
@@ -81,4 +77,8 @@ a.custom-card:hover {
 
 #div_id_query {
     margin-bottom: 0 !important;
+}
+
+.list-group-item {
+    color: white;
 }
