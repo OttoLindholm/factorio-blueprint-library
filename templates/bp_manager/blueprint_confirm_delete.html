@@ -1,0 +1,17 @@
+{% extends "includes/form_card.html" %}
+
+
+{% block form_title %}
+  <h3>Delete Blueprint?</h3>
+{% endblock %}
+
+{% block form_body %}
+  <div class="d-flex justify-content-around">
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <input type="submit" value="Yes, Delete" class="btn">
+    </form>
+    <a class="btn" href="{{ request.META.HTTP_REFERER }}">No, Return</a>
+  </div>
+{% endblock %}
