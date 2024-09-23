@@ -21,7 +21,7 @@ class Tag(models.Model):
 
 
 class Blueprint(models.Model):
-    owner = models.ForeignKey(
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="blueprints",
@@ -39,7 +39,7 @@ class Blueprint(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"{self.title} ({self.owner.username})"
+        return f"{self.title} ({self.user.username})"
 
     def get_absolute_url(self):
         return reverse("bp_manager:blueprint-detail", kwargs={"pk": self.pk})

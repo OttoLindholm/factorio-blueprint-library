@@ -31,7 +31,7 @@ class BlueprintListView(ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        queryset = Blueprint.objects.select_related("owner").prefetch_related(
+        queryset = Blueprint.objects.select_related("user").prefetch_related(
             "tags", "comments"
         )
         query = self.request.GET.get("query", "")
@@ -83,7 +83,7 @@ class BlueprintCreateView(LoginRequiredMixin, CreateView):
     form_class = BlueprintForm
 
     def form_valid(self, form):
-        form.instance.owner = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
