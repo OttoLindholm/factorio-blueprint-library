@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 
-from bp_manager.models import Commentary, Blueprint, User
+from bp_manager.models import Commentary, Blueprint, User, Tag
 
 
 class CommentaryForm(forms.ModelForm):
@@ -23,10 +23,44 @@ class CommentaryForm(forms.ModelForm):
 
 
 class BlueprintForm(forms.ModelForm):
+    existing_tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={"size": 5}),
+    )
+    new_tags = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": "Add new tags with commas"}),
+    )
+
     class Meta:
         model = Blueprint
-        fields = "__all__"
-        exclude = ["owner"]
+        fields = [
+            "title",
+            "description",
+            "blueprint_string",
+            "blueprint_image",
+            "existing_tags",
+            "new_tags",
+        ]
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+
+        existing_tags = self.cleaned_data["existing_tags"]
+        for tag in existing_tags:
+            instance.tags.add(tag)
+
+        new_tags_str = self.cleaned_data["new_tags"]
+        if new_tags_str:
+            new_tags_list = [tag.strip() for tag in new_tags_str.split(",")]
+            for tag_name in new_tags_list:
+                tag, created = Tag.objects.get_or_create(name=tag_name)
+                instance.tags.add(tag)
+
+        return instance
 
 
 class BlueprintSearchForm(forms.Form):
@@ -38,7 +72,7 @@ class BlueprintSearchForm(forms.Form):
             attrs={
                 "type": "search",
                 "placeholder": "Search blueprints",
-                "aria-label": "Search"
+                "aria-label": "Search",
             }
         ),
     )
