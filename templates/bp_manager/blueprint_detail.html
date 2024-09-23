@@ -14,7 +14,7 @@
               <div class="card-footer">
                 <img src="{{ blueprint.blueprint_image.url }}" class="img-fluid rounded"
                      alt="{{ blueprint.title }}">
-                
+
                 {% if user.is_authenticated and user == blueprint.user %}
                   <div class="btn-group d-flex justify-content-center mt-2">
                     <a href="{% url 'bp_manager:blueprint-update' pk=blueprint.pk %}"
@@ -38,7 +38,9 @@
                     <h5>Author</h5>
                     <div class="card-footer">
                       <a class="fw-bold text-white"
-                         href="{{ blueprint.user.get_absolute_url }}">{{ blueprint.user.username }}</a>
+                         href="{% url 'bp_manager:index' %}?username={{ blueprint.user.username }}&query={{ request.GET.query }}">
+                        {{ blueprint.user.username }}
+                      </a>
                     </div>
                   </li>
 

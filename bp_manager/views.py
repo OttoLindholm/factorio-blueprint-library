@@ -36,9 +36,12 @@ class BlueprintListView(ListView):
         )
         query = self.request.GET.get("query", "")
         tag = self.request.GET.get("tag", "")
+        username = self.request.GET.get("username", "")
 
         if tag:
             queryset = queryset.filter(tags__name=tag).distinct()
+        elif username:
+            queryset = queryset.filter(user__username=username).distinct()
         elif query:
             queryset = queryset.filter(
                 Q(user__username__icontains=query)
