@@ -5,7 +5,7 @@ from django.urls import reverse
 
 # Creates a dir for the current user where their drawings are stored
 def user_blueprint_path(instance: models.Model, filename: str) -> str:
-    return f"user_{instance.owner.id}/{filename}"
+    return f"user_{instance.user.id}/{filename}"
 
 
 class User(AbstractUser):

@@ -41,7 +41,7 @@ class BlueprintListView(ListView):
             queryset = queryset.filter(tags__name=tag).distinct()
         elif query:
             queryset = queryset.filter(
-                Q(owner__username__icontains=query)
+                Q(user__username__icontains=query)
                 | Q(title__icontains=query)
                 | Q(tags__name__icontains=query)
             ).distinct()
