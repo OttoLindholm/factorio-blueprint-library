@@ -37,9 +37,12 @@ class BlueprintListView(ListView):
         query = self.request.GET.get("query", "")
         tag = self.request.GET.get("tag", "")
         username = self.request.GET.get("username", "")
+        liked = self.request.GET.get("liked", "")
 
         if tag:
             queryset = queryset.filter(tags__name=tag).distinct()
+        elif liked == "true" and self.request.user.is_authenticated:
+            queryset = queryset.filter(likes__user=self.request.user).distinct()
         elif username:
             queryset = queryset.filter(user__username=username).distinct()
         elif query:

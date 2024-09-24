@@ -13,11 +13,21 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ">
-          <a class="nav-link active" href="{% url 'bp_manager:index' %}">Home</a>
+          <a class="nav-link active fw-bold" href="{% url 'bp_manager:index' %}">Home</a>
         </li>
-
-
+      
         {% if user.is_authenticated %}
+          <li class="nav-item ">
+            <a class="nav-link active fw-bold" href="{% url 'bp_manager:index' %}?liked=true">Favorite Blueprints</a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link active fw-bold"
+               href="{% url 'bp_manager:index' %}?username={{ user.username }}&query={{ request.GET.query }}">My
+              Blueprints
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="{{ user.get_absolute_url }}">
               <i class="bx bx-user-circle bx-sm"></i>
@@ -36,7 +46,7 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'bp_manager:user-register' %}?next={{ request.path }}">
+            <a class="nav-link active fw-bold" href="{% url 'bp_manager:user-register' %}?next={{ request.path }}">
               Register
             </a>
           </li>
