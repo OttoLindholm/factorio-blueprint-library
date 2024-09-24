@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row d-flex justify-content-center mt-2">
+      <div class="col-12 col-md-6">
+
+        <ul class="list-group text-light text-align-middle">
+          <li class="list-group-item bg-gradient">
+            <h5>Username</h5>
+            <div class="card-footer">
+              <p>{{ user_.username }}</p>
+            </div>
+          </li>
+
+          <li class="list-group-item bg-gradient">
+            <h5>Email</h5>
+            <div class="card-footer">
+              <p>{{ user_.email }}</p>
+            </div>
+          </li>
+
+          <li class="list-group-item bg-gradient">
+            <h5>Creation date</h5>
+            <div class="card-footer">
+              <p>{{ user_.date_joined }}</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="btn-group d-flex justify-content-center mt-2">
+          <a href="{% url 'bp_manager:user-update' pk=user.pk %}"
+             class="btn text-white text-center bg-gradient mx-2">
+            Update
+          </a>
+
+          <a href="{% url 'bp_manager:user-delete' pk=user.pk %}"
+             class="btn text-white text-center bg-gradient mx-2">
+            Delete
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
