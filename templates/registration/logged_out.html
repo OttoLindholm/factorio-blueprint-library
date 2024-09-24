@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row d-flex justify-content-center mt-3">
+    <div class="col-12 col-md-6">
+      <div class="card text-center bg-gradient">
+        <h3 class="car-title text-white">
+          Logged out!
+        </h3>
+        
+        <h3 class="text-white">
+          Click here to
+          <a class="fw-bold text-white" href="{% url 'login' %}">login </a>
+          again.
+        </h3>
+      </div>
+    </div>
+  </div>
+{% endblock %}

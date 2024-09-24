@@ -141,6 +141,7 @@ class UserUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
 
 class UserDeleteView(LoginRequiredMixin, UserIsOwnerMixin, FormView):
     form_class = UserDeleteForm
+    template_name = "bp_manager/user_confirm_delete.html"
     success_url = reverse_lazy("bp_manager:index")
 
     def form_valid(self, form):
