@@ -164,7 +164,7 @@ def toggle_like(request, pk):
     like, created = Like.objects.get_or_create(blueprint=blueprint, user=user)
     if not created:
         like.delete()
-    return redirect("bp_manager:index")
+    return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
 
 
 def add_comment(request, pk):
@@ -176,4 +176,4 @@ def add_comment(request, pk):
             commentary.user = request.user
             commentary.blueprint = blueprint
             commentary.save()
-    return redirect("bp_manager:blueprint-detail", pk=blueprint.pk)
+    return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
