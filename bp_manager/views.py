@@ -157,6 +157,23 @@ class UserDeleteView(LoginRequiredMixin, UserIsOwnerMixin, FormView):
             return self.form_invalid(form)
 
 
+class CommentaryCreateView(LoginRequiredMixin, CreateView):
+    model = Commentary
+    form_class = CommentaryForm
+    template_name = "bp_manager/blueprint_detail.html"
+
+    def form_valid(self, form):
+        blueprint = get_object_or_404(Blueprint, pk=self.kwargs["pk"])
+        commentary = form.save(commit=False)
+        commentary.blueprint = blueprint
+        commentary.user = self.request.user
+        commentary.save()
+        return redirect(
+            reverse_lazy("bp_manager:blueprint-detail", kwargs={"pk": blueprint.pk})
+            + "#comments"
+        )
+
+
 @login_required
 def toggle_like(request, pk):
     blueprint = get_object_or_404(Blueprint, pk=pk)
@@ -164,16 +181,4 @@ def toggle_like(request, pk):
     like, created = Like.objects.get_or_create(blueprint=blueprint, user=user)
     if not created:
         like.delete()
-    return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
-
-
-def add_comment(request, pk):
-    blueprint = get_object_or_404(Blueprint, pk=pk)
-    if request.method == "POST":
-        form = CommentaryForm(request.POST)
-        if form.is_valid():
-            commentary = form.save(commit=False)
-            commentary.user = request.user
-            commentary.blueprint = blueprint
-            commentary.save()
     return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))

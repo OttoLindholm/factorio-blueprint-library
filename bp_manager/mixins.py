@@ -12,7 +12,7 @@ class UserIsOwnerMixin:
                 return HttpResponseForbidden("You are not allowed to modify this user.")
             return obj
 
-        if hasattr(obj, 'user') and obj.user != self.request.user:
+        if hasattr(obj, "user") and obj.user != self.request.user:
             return HttpResponseForbidden("You are not allowed to modify this object.")
 
         return obj

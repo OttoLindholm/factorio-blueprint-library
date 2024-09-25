@@ -91,7 +91,7 @@
         </div>
 
         <div class="card-footer">
-          <ul class="list-group">
+          <ul id="comments" class="list-group">
             <li class="list-group-item">
               {% if user.is_authenticated %}
                 <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' pk=blueprint.pk %}">
