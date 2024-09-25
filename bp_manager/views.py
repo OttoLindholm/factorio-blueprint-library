@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
@@ -82,6 +81,7 @@ class BlueprintDetailView(DetailView):
         context["comments"] = Commentary.objects.filter(
             blueprint=self.object
         ).select_related("user")
+        self.request.session["blueprint_id"] = self.object.pk
         return context
 
 
@@ -164,13 +164,28 @@ class CommentaryCreateView(LoginRequiredMixin, CreateView):
     template_name = "bp_manager/blueprint_detail.html"
 
     def form_valid(self, form):
-        blueprint = get_object_or_404(Blueprint, pk=self.kwargs["pk"])
+        blueprint_id = self.request.session.get("blueprint_id")
+        blueprint = get_object_or_404(Blueprint, pk=blueprint_id)
+
         commentary = form.save(commit=False)
         commentary.blueprint = blueprint
         commentary.user = self.request.user
         commentary.save()
+
         return redirect(
             reverse_lazy("bp_manager:blueprint-detail", kwargs={"pk": blueprint.pk})
+            + "#comments"
+        )
+
+
+class CommentaryDeleteView(LoginRequiredMixin, UserIsOwnerMixin, View):
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        commentary = get_object_or_404(Commentary, pk=pk)
+        blueprint_pk = commentary.blueprint.pk
+        commentary.delete()
+        return redirect(
+            reverse_lazy("bp_manager:blueprint-detail", kwargs={"pk": blueprint_pk})
             + "#comments"
         )
 

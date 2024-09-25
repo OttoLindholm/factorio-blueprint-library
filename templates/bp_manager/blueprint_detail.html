@@ -94,7 +94,7 @@
           <ul id="comments" class="list-group">
             <li class="list-group-item">
               {% if user.is_authenticated %}
-                <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' pk=blueprint.pk %}">
+                <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' %}">
                   {% csrf_token %}
                   {{ commentary_form|crispy }}
                   <input class="btn text-white bg-gradient" type="submit" value="Submit">
@@ -115,6 +115,13 @@
               <li class="list-group-item">
                 <h6 class="fw-bold">{{ comment.user.username }}</h6>
                 <p>{{ comment.content }}</p>
+              
+                {% if user == comment.user %}
+                  <form action="{% url 'bp_manager:comment-delete' comment.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn bg-gradient">Delete</button>
+                  </form>
+                {% endif %}
                 <small class="d-flex justify-content-end">{{ comment.created_time }}</small>
               </li>
             {% endfor %}
