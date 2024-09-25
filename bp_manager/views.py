@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
     CreateView,
@@ -174,11 +175,14 @@ class CommentaryCreateView(LoginRequiredMixin, CreateView):
         )
 
 
-@login_required
-def toggle_like(request, pk):
-    blueprint = get_object_or_404(Blueprint, pk=pk)
-    user = request.user
-    like, created = Like.objects.get_or_create(blueprint=blueprint, user=user)
-    if not created:
-        like.delete()
-    return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
+class ToggleLikeView(LoginRequiredMixin, View):
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        blueprint = get_object_or_404(Blueprint, pk=pk)
+        user = request.user
+
+        like, created = Like.objects.get_or_create(user=user, blueprint=blueprint)
+
+        if not created:
+            like.delete()
+        return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
