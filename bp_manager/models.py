@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 # Creates a dir for the current user where their drawings are stored
@@ -58,6 +58,14 @@ class Commentary(models.Model):
 
     class Meta:
         ordering = ["-created_time"]
+
+    def get_absolute_url(self):
+        return (
+            reverse_lazy(
+                "bp_manager:blueprint-detail", kwargs={"pk": self.blueprint.pk}
+            )
+            + f"#comment-{self.pk}"
+        )
 
 
 class Like(models.Model):

@@ -172,10 +172,30 @@ class CommentaryCreateView(LoginRequiredMixin, CreateView):
         commentary.user = self.request.user
         commentary.save()
 
-        return redirect(
-            reverse_lazy("bp_manager:blueprint-detail", kwargs={"pk": blueprint.pk})
-            + "#comments"
-        )
+        return redirect(commentary.get_absolute_url())
+
+
+class CommentaryUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
+    model = Commentary
+    form_class = CommentaryForm
+    template_name = "bp_manager/blueprint_detail.html"
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["edit_comment_form"] = self.get_form()
+        context["comment_to_edit"] = self.object
+        context["blueprint"] = self.object.blueprint
+        context["comments"] = Commentary.objects.filter(
+            blueprint=self.object.blueprint
+        ).select_related("user")
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        return redirect(self.get_success_url())
 
 
 class CommentaryDeleteView(LoginRequiredMixin, UserIsOwnerMixin, View):

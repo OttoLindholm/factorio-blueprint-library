@@ -112,16 +112,32 @@
             </li>
 
             {% for comment in comments %}
-              <li class="list-group-item">
+              <li id="comment-{{ comment.pk }}" class="list-group-item">
                 <h6 class="fw-bold">{{ comment.user.username }}</h6>
-                <p>{{ comment.content }}</p>
-              
-                {% if user == comment.user %}
-                  <form action="{% url 'bp_manager:comment-delete' comment.pk %}" method="post">
+
+                {% if comment == comment_to_edit %}
+                  <form method="POST" action="{% url 'bp_manager:comment-update' comment.pk %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn bg-gradient">Delete</button>
+                    {{ edit_comment_form|crispy }}
+                    <input class="btn text-white bg-gradient" type="submit" value="Save">
+                    <a href="{% url 'bp_manager:blueprint-detail' blueprint.pk %}#comment-{{ comment.pk }}"
+                       class="btn bg-gradient">Cancel</a>
                   </form>
+                {% else %}
+
+                  <p>{{ comment.content }}</p>
+
+                  {% if user == comment.user %}
+                    <a href="{% url 'bp_manager:comment-update' comment.pk %}#comment-{{ comment.pk }}"
+                       class="btn bg-gradient">Edit</a>
+                    <form action="{% url 'bp_manager:comment-delete' comment.pk %}" method="post"
+                          style="display:inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="btn bg-gradient">Delete</button>
+                    </form>
+                  {% endif %}
                 {% endif %}
+
                 <small class="d-flex justify-content-end">{{ comment.created_time }}</small>
               </li>
             {% endfor %}
