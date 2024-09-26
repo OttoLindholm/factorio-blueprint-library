@@ -92,25 +92,27 @@
 
         <div class="card-footer">
           <ul id="comments" class="list-group">
-            <li class="list-group-item">
-              {% if user.is_authenticated %}
-                <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' %}">
-                  {% csrf_token %}
-                  {{ commentary_form|crispy }}
-                  <input class="btn text-white bg-gradient" type="submit" value="Submit">
-                  <input class="btn text-white bg-gradient" type="reset" value="Clear">
-                </form>
-              {% else %}
-                <div class="d-flex justify-content-center">
-                  <p>
-                    You should
-                    <a class="fw-bold text-white" href="{% url 'login' %}?next={{ request.path }}">log in </a>
-                    to add comments!
-                  </p>
-                </div>
-              {% endif %}
-            </li>
-
+            {% if not comment_to_edit %}
+              <li class="list-group-item">
+                {% if user.is_authenticated %}
+                  <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' %}">
+                    {% csrf_token %}
+                    {{ commentary_form|crispy }}
+                    <input class="btn text-white bg-gradient" type="submit" value="Submit">
+                    <input class="btn text-white bg-gradient" type="reset" value="Clear">
+                  </form>
+                {% else %}
+                  <div class="d-flex justify-content-center">
+                    <p>
+                      You should
+                      <a class="fw-bold text-white" href="{% url 'login' %}?next={{ request.path }}">log in </a>
+                      to add comments!
+                    </p>
+                  </div>
+                {% endif %}
+              </li>
+            {% endif %}
+          
             {% for comment in comments %}
               <li id="comment-{{ comment.pk }}" class="list-group-item">
                 <h6 class="fw-bold">{{ comment.user.username }}</h6>
