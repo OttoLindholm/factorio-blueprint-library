@@ -93,13 +93,21 @@
         <div class="card-footer">
           <ul id="comments" class="list-group">
             {% if not comment_to_edit %}
-              <li class="list-group-item">
+              <li class="list-group-item pt-4">
                 {% if user.is_authenticated %}
-                  <form class="col-md" method="POST" action="{% url 'bp_manager:add-comment' %}">
+                  <form class="d-flex" method="POST" action="{% url 'bp_manager:add-comment' %}">
                     {% csrf_token %}
-                    {{ commentary_form|crispy }}
-                    <input class="btn text-white bg-gradient" type="submit" value="Submit">
-                    <input class="btn text-white bg-gradient" type="reset" value="Clear">
+                    <div class="flex-grow-1">
+                      {{ commentary_form|crispy }}
+                    </div>
+                    <div class="d-flex flex-column ms-3">
+                      <button class="like-btn text-light mb-2" type="submit">
+                        <i class='bx bx-comment-add bx-sm'></i>
+                      </button>
+                      <button class="like-btn text-light mb-2" type="reset">
+                        <i class='bx bx-eraser bx-sm'></i>
+                      </button>
+                    </div>
                   </form>
                 {% else %}
                   <div class="d-flex justify-content-center">
@@ -112,32 +120,48 @@
                 {% endif %}
               </li>
             {% endif %}
-          
+
             {% for comment in comments %}
               <li id="comment-{{ comment.pk }}" class="list-group-item">
-                <h6 class="fw-bold">{{ comment.user.username }}</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                  <h6 class="fw-bold">{{ comment.user.username }}</h6>
+                  {% if user == comment.user and not comment_to_edit %}
+                    <div>
+                      <a href="{% url 'bp_manager:comment-update' comment.pk %}#comment-{{ comment.pk }}"
+                         class="link text-white mx-3" style="text-decoration: none">
+                        <i class='bx bx-edit-alt bx-sm'></i>
+                      </a>
+                      <form action="{% url 'bp_manager:comment-delete' comment.pk %}" method="post"
+                            style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="like-btn text-light">
+                          <i class='bx bx-comment-x bx-sm'></i>
+                        </button>
+                      </form>
+                    </div>
+                  {% endif %}
+                </div>
 
                 {% if comment == comment_to_edit %}
-                  <form method="POST" action="{% url 'bp_manager:comment-update' comment.pk %}">
+                  <form method="POST" action="{% url 'bp_manager:comment-update' comment.pk %}" class="d-flex">
                     {% csrf_token %}
-                    {{ edit_comment_form|crispy }}
-                    <input class="btn text-white bg-gradient" type="submit" value="Save">
-                    <a href="{% url 'bp_manager:blueprint-detail' blueprint.pk %}#comment-{{ comment.pk }}"
-                       class="btn bg-gradient">Cancel</a>
+                    <div class="flex-grow-1">
+                      {{ edit_comment_form|crispy }}
+                    </div>
+
+                    <div class="d-flex flex-column ms-3">
+                      <button class="like-btn text-light mb-2" type="submit">
+                        <i class='bx bx-save bx-sm'></i>
+                      </button>
+                      <a href="{% url 'bp_manager:blueprint-detail' blueprint.pk %}#comment-{{ comment.pk }}"
+                         class="link text-white">
+                        <i class='bx bx-undo bx-sm'></i>
+                      </a>
+                    </div>
                   </form>
                 {% else %}
-
+                  <hr class="m-0">
                   <p>{{ comment.content }}</p>
-
-                  {% if user == comment.user %}
-                    <a href="{% url 'bp_manager:comment-update' comment.pk %}#comment-{{ comment.pk }}"
-                       class="btn bg-gradient">Edit</a>
-                    <form action="{% url 'bp_manager:comment-delete' comment.pk %}" method="post"
-                          style="display:inline;">
-                      {% csrf_token %}
-                      <button type="submit" class="btn bg-gradient">Delete</button>
-                    </form>
-                  {% endif %}
                 {% endif %}
 
                 <small class="d-flex justify-content-end">{{ comment.created_time }}</small>
