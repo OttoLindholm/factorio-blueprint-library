@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-from os import getenv, path
+from os import getenv
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -141,7 +141,7 @@ STATIC_ROOT = "staticfiles/"
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
