@@ -241,3 +241,26 @@ class CommentaryUpdateViewTest(TestCase):
         self.commentary.refresh_from_db()
         self.assertEqual(self.commentary.content, "Updated commentary")
         self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
+
+
+class CommentaryDeleteViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="12345")
+        self.blueprint = Blueprint.objects.create(
+            title="Test Blueprint", user=self.user
+        )
+        self.commentary = Commentary.objects.create(
+            content="Test commentary", blueprint=self.blueprint, user=self.user
+        )
+        self.client.login(username="testuser", password="12345")
+
+    def test_delete_commentary(self):
+        response = self.client.post(
+            reverse("bp_manager:comment-delete", kwargs={"pk": self.commentary.pk})
+        )
+        self.assertEqual(Commentary.objects.count(), 0)
+        self.assertEqual(
+            response.url,
+            reverse("bp_manager:blueprint-detail", kwargs={"pk": self.blueprint.pk})
+            + "#comments",
+        )
