@@ -1,13 +1,15 @@
+from django.contrib.auth import get_user_model
 from django.contrib.sessions.middleware import SessionMiddleware
 
 from bp_manager.models import Like, Tag
 from django.test import TestCase
 from django.urls import reverse
-from bp_manager.models import Blueprint, User
+from bp_manager.models import Blueprint
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory, Client
 from bp_manager.views import BlueprintListView, BlueprintDetailView, ToggleLikeView
 
+User = get_user_model()
 BLUEPRINTS_URL = reverse("bp_manager:index")
 
 
@@ -158,3 +160,20 @@ class UserRegisterViewTests(TestCase):
         response = self.client.post(reverse("bp_manager:user-register"), data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username="newuser").exists())
+
+
+class UserUpdateViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        self.client = Client()
+
+    def test_update_user_profile(self):
+        self.client.login(username="testuser", password="password")
+        data = {"username": "updateduser", "email": "updateduser@example.com"}
+        response = self.client.post(
+            reverse("bp_manager:user-update", kwargs={"pk": self.user.pk}), data
+        )
+        self.assertEqual(response.status_code, 302)
+        updated_user = User.objects.get(pk=self.user.pk)
+        self.assertEqual(updated_user.username, "updateduser")
+        self.assertEqual(updated_user.email, "updateduser@example.com")
