@@ -2,7 +2,12 @@ from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from bp_manager.forms import CommentaryForm, BlueprintForm, UserRegistrationForm
+from bp_manager.forms import (
+    CommentaryForm,
+    BlueprintForm,
+    UserRegistrationForm,
+    UserUpdateForm,
+)
 from bp_manager.models import Tag
 
 
@@ -102,4 +107,26 @@ class UserRegistrationFormTest(TestCase):
             "password2": "Password_456",
         }
         form = UserRegistrationForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+
+class UserUpdateFormTest(LoggedInUserTestCase):
+
+    def test_valid_update_form(self):
+        form_data = {
+            "username": "newusername",
+            "email": "newemail@example.com",
+        }
+        form = UserUpdateForm(instance=self.user, data=form_data)
+        self.assertTrue(form.is_valid())
+        updated_user = form.save()
+        self.assertEqual(updated_user.username, form_data["username"])
+        self.assertEqual(updated_user.email, form_data["email"])
+
+    def test_invalid_update_form(self):
+        form_data = {
+            "username": "",
+            "email": "newemail@example.com",
+        }
+        form = UserUpdateForm(instance=self.user, data=form_data)
         self.assertFalse(form.is_valid())
