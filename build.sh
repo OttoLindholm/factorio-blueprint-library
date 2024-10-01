@@ -8,9 +8,8 @@ pip install -r requirements.txt
 # Ensure the media directory exists
 mkdir -p media
 
-# Copy media files from the existing media directory to the project
-# Adjust the path if necessary
-cp -r ../media/* media/
+# Copy media files from the existing directory
+cp -r media/* media/
 
 # Convert static asset files
 python manage.py collectstatic --no-input
