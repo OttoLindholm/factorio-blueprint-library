@@ -47,6 +47,12 @@ class BaseTestCase(TestCase):
         middleware.process_request(request)
         request.session.save()
 
+    def tearDown(self):
+        blueprint = Blueprint.objects.filter(user=self.user).first()
+        if blueprint and blueprint.blueprint_image:
+            if os.path.exists(blueprint.blueprint_image.path):
+                os.remove(blueprint.blueprint_image.path)
+
 
 class BlueprintListViewTests(BaseTestCase):
     def setUp(self):
@@ -136,10 +142,7 @@ class BlueprintCreateViewTest(BaseTestCase):
         self.login_user()
 
     def tearDown(self):
-        blueprint = Blueprint.objects.filter(user=self.user).first()
-        if blueprint and blueprint.blueprint_image:
-            if os.path.exists(blueprint.blueprint_image.path):
-                os.remove(blueprint.blueprint_image.path)
+        super().tearDown()
 
     def test_create_blueprint(self):
         response = self.client.post(
@@ -152,6 +155,27 @@ class BlueprintCreateViewTest(BaseTestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Blueprint.objects.count(), 2)
+        self.assertEqual(response.url, Blueprint.objects.first().get_absolute_url())
+
+
+class BlueprintUpdateViewTest(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.login_user()
+
+    def tearDown(self):
+        super().tearDown()
+
+    def test_update_blueprint(self):
+        response = self.client.post(
+            reverse("bp_manager:blueprint-update", kwargs={"pk": self.blueprint.pk}),
+            {"title": "Updated blueprint",
+             "description": "Test description",
+             "blueprint_string": "Test string",
+             "blueprint_image": self.image_file}
+        )
+        self.blueprint.refresh_from_db()
+        self.assertEqual(self.blueprint.title, "Updated blueprint")
         self.assertEqual(response.url, Blueprint.objects.first().get_absolute_url())
 
 
