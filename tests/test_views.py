@@ -13,20 +13,39 @@ User = get_user_model()
 BLUEPRINTS_URL = reverse("bp_manager:index")
 
 
-class BlueprintListViewTests(TestCase):
+class BaseTestCase(TestCase):
     def setUp(self):
+        self.client = Client()
         self.user = User.objects.create_user(username="testuser", password="password")
-        self.blueprint1 = Blueprint.objects.create(
-            title="Test Blueprint 1", user=self.user
+        self.blueprint = Blueprint.objects.create(
+            title="Test Blueprint", user=self.user
         )
-        self.blueprint2 = Blueprint.objects.create(
-            title="Test Blueprint 2", user=self.user
-        )
-
         self.tag = Tag.objects.create(name="Test Tag")
-        self.blueprint1.tags.add(self.tag)
-
+        self.blueprint.tags.add(self.tag)
+        self.commentary = Commentary.objects.create(
+            content="Test commentary", blueprint=self.blueprint, user=self.user
+        )
         self.factory = RequestFactory()
+
+    def login_user(self):
+        self.client.force_login(self.user)
+
+    def create_blueprint(self, title):
+        return Blueprint.objects.create(title=title, user=self.user)
+
+    @staticmethod
+    def add_session_to_request(request):
+        middleware = SessionMiddleware(lambda x: None)
+        middleware.process_request(request)
+        request.session.save()
+
+
+class BlueprintListViewTests(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.blueprint1 = self.create_blueprint("Test Blueprint 1")
+        self.blueprint2 = self.create_blueprint("Test Blueprint 2")
+        self.blueprint1.tags.add(self.tag)
 
     def test_blueprint_list_view_no_filters(self):
         request = self.factory.get(BLUEPRINTS_URL)
@@ -47,7 +66,7 @@ class BlueprintListViewTests(TestCase):
         self.assertIn(self.blueprint2, response.context_data["blueprint_list"])
 
     def test_blueprint_list_view_with_tag_filter(self):
-        request = self.factory.get(BLUEPRINTS_URL, {"tag": "Test Tag"})
+        request = self.factory.get(BLUEPRINTS_URL, {"query": "Test Tag"})
         request.user = self.user
 
         response = BlueprintListView.as_view()(request)
@@ -74,22 +93,12 @@ class BlueprintListViewTests(TestCase):
         self.assertEqual(response.context_data["liked_blueprints"], [])
 
 
-class BlueprintDetailViewTests(TestCase):
+class BlueprintDetailViewTests(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="password")
-        self.blueprint = Blueprint.objects.create(
-            title="Test Blueprint", user=self.user
-        )
-        self.factory = RequestFactory()
+        super().setUp()
         self.BLUEPRINT_DETAIL_URL = reverse(
             "bp_manager:blueprint-detail", kwargs={"pk": self.blueprint.pk}
         )
-
-    @staticmethod
-    def add_session_to_request(request):
-        middleware = SessionMiddleware(lambda x: None)
-        middleware.process_request(request)
-        request.session.save()
 
     def test_blueprint_detail_view(self):
         request = self.factory.get(self.BLUEPRINT_DETAIL_URL)
@@ -112,13 +121,9 @@ class BlueprintDetailViewTests(TestCase):
         self.assertIsNotNone(response.context_data["commentary_form"])
 
 
-class ToggleLikeViewTests(TestCase):
+class ToggleLikeViewTests(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="password")
-        self.blueprint = Blueprint.objects.create(
-            title="Test Blueprint", user=self.user
-        )
-        self.factory = RequestFactory()
+        super().setUp()
         self.TOGGLE_LIKE_URL = reverse(
             "bp_manager:toggle-like", kwargs={"pk": self.blueprint.pk}
         )
@@ -162,13 +167,12 @@ class UserRegisterViewTests(TestCase):
         self.assertTrue(User.objects.filter(username="newuser").exists())
 
 
-class UserUpdateViewTests(TestCase):
+class UserUpdateViewTests(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="password")
-        self.client = Client()
+        super().setUp()
 
     def test_update_user_profile(self):
-        self.client.login(username="testuser", password="password")
+        self.login_user()
         data = {"username": "updateduser", "email": "updateduser@example.com"}
         response = self.client.post(
             reverse("bp_manager:user-update", kwargs={"pk": self.user.pk}), data
@@ -179,36 +183,32 @@ class UserUpdateViewTests(TestCase):
         self.assertEqual(updated_user.email, "updateduser@example.com")
 
 
-class UserDeleteViewTests(TestCase):
+class UserDeleteViewTests(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="password")
-        self.client = Client()
+        super().setUp()
         self.USER_DELETE_URL = reverse(
             "bp_manager:user-delete", kwargs={"pk": self.user.pk}
         )
 
     def test_delete_user(self):
-        self.client.login(username="testuser", password="password")
+        self.login_user()
         data = {"password": "password"}
         response = self.client.post(self.USER_DELETE_URL, data)
         self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(username="testuser").exists())
 
     def test_delete_user_incorrect_password(self):
-        self.client.login(username="testuser", password="password")
+        self.login_user()
         data = {"password": "wrong_password"}
         response = self.client.post(self.USER_DELETE_URL, data)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(User.objects.filter(username="testuser").exists())
 
 
-class CommentaryCreateViewTest(TestCase):
+class CommentaryCreateViewTest(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="12345")
-        self.blueprint = Blueprint.objects.create(
-            title="Test Blueprint", user=self.user
-        )
-        self.client.login(username="testuser", password="12345")
+        super().setUp()
+        self.login_user()
         session = self.client.session
         session["blueprint_id"] = self.blueprint.id
         session.save()
@@ -222,16 +222,10 @@ class CommentaryCreateViewTest(TestCase):
         self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
 
 
-class CommentaryUpdateViewTest(TestCase):
+class CommentaryUpdateViewTest(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="12345")
-        self.blueprint = Blueprint.objects.create(
-            title="Test Blueprint", user=self.user
-        )
-        self.commentary = Commentary.objects.create(
-            content="Test commentary", blueprint=self.blueprint, user=self.user
-        )
-        self.client.login(username="testuser", password="12345")
+        super().setUp()
+        self.login_user()
 
     def test_update_commentary(self):
         response = self.client.post(
@@ -243,16 +237,10 @@ class CommentaryUpdateViewTest(TestCase):
         self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
 
 
-class CommentaryDeleteViewTest(TestCase):
+class CommentaryDeleteViewTest(BaseTestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="12345")
-        self.blueprint = Blueprint.objects.create(
-            title="Test Blueprint", user=self.user
-        )
-        self.commentary = Commentary.objects.create(
-            content="Test commentary", blueprint=self.blueprint, user=self.user
-        )
-        self.client.login(username="testuser", password="12345")
+        super().setUp()
+        self.login_user()
 
     def test_delete_commentary(self):
         response = self.client.post(
