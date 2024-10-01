@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
@@ -8,7 +10,7 @@ from bp_manager.forms import (
     UserRegistrationForm,
     UserUpdateForm,
 )
-from bp_manager.models import Tag
+from bp_manager.models import Tag, Blueprint
 
 
 class LoggedInUserTestCase(TestCase):
@@ -26,7 +28,7 @@ class LoggedInUserTestCase(TestCase):
         self.image_file = SimpleUploadedFile(
             name="foo.gif",
             content=b"GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,"
-            b"\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00",
+                    b"\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00",
         )
 
 
@@ -42,6 +44,12 @@ class CommentaryFormTest(LoggedInUserTestCase):
 
 
 class BlueprintFormTest(LoggedInUserTestCase):
+    def tearDown(self):
+        blueprint = Blueprint.objects.filter(user=self.user).first()
+        if blueprint and blueprint.blueprint_image:
+            if os.path.exists(blueprint.blueprint_image.path):
+                os.remove(blueprint.blueprint_image.path)
+
     def test_valid_form_with_existing_tags(self):
         form_data = {
             "title": "Test Blueprint",
