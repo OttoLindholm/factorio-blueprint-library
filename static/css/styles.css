@@ -1,0 +1,88 @@
+html,
+body {
+    height: 100%;
+    --charcoal7: #36454F;
+    --charcoal6: #495D6A;
+    --charcoal5: #5B7586;
+    --charcoal4: #718C9E;
+    --charcoal3: #8CA2B0;
+    --charcoal2: #A7B8C3;
+    --charcoal1: #C3CED6;
+}
+
+body {
+    background-color: var(--charcoal1);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.fixed-square {
+    width: 100%;
+    position: relative;
+}
+
+.btn,
+.navbar {
+    color: white;
+    background-color: var(--charcoal7);
+}
+
+.card {
+    background-color: var(--charcoal6);
+}
+
+.card.fixed-square {
+    background-color: var(--charcoal3);
+}
+
+.form-control,
+.form-control:focus {
+    background-color: var(--charcoal1);
+}
+
+.form-text {
+    color: white;
+}
+
+a.image-ref,
+a.image-ref:hover {
+    text-decoration: none;
+}
+
+.like-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+
+.page-link,
+.page-link:hover {
+    color: white;
+    border-color: var(--charcoal5);
+    background-color: var(--charcoal5);
+}
+
+
+.list-group-item {
+    background-color: var(--charcoal4);
+}
+
+.page-item.disabled .page-link {
+    border-color: var(--charcoal3);
+    background-color: var(--charcoal3);
+}
+
+.page-item.active .page-link {
+    border-color: var(--charcoal3);
+    background-color: var(--charcoal5);
+}
+
+
+#div_id_query {
+    margin-bottom: 0 !important;
+}
+
+.list-group-item {
+    color: white;
+}

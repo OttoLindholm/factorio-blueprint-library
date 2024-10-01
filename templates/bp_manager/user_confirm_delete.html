@@ -1,0 +1,20 @@
+{% extends "includes/form_card.html" %}
+{% load crispy_forms_filters %}
+
+{% block form_title %}
+  <h3>Delete your Account?</h3>
+{% endblock %}
+
+{% block form_body %}
+  <div class="d-flex justify-content-around">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="flex-grow-1">
+        {{ form|crispy }}
+      </div>
+
+      <input type="submit" value="Yes, Delete" class="btn text-white bg-gradient">
+      <a class="btn text-white bg-gradient" href="{{ request.META.HTTP_REFERER }}">No, Return</a>
+    </form>
+  </div>
+{% endblock %}

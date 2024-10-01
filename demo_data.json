@@ -1,0 +1,1724 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2024-09-09T10:32:48.446Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "Otto",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2024-09-09T10:32:58.762Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "Vincent",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2024-09-09T10:33:16.574Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Albert",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2024-09-09T10:34:04.594Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "5",
+      "object_repr": "Tony",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2024-09-09T10:34:15.108Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "6",
+      "object_repr": "Bob",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2024-09-09T10:34:37.543Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "1",
+      "object_repr": "balancer",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2024-09-09T10:34:42.875Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "2",
+      "object_repr": "smelters",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2024-09-09T10:34:49.593Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "3",
+      "object_repr": "red belts",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2024-09-09T10:34:55.751Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "4",
+      "object_repr": "blue belts",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2024-09-09T10:35:14.518Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "5",
+      "object_repr": "yellow belts",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2024-09-09T10:35:37.043Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "6",
+      "object_repr": "science",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2024-09-09T10:35:53.281Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "4",
+      "object_repr": "blue",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2024-09-09T10:35:56.023Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "4",
+      "object_repr": "blue",
+      "action_flag": 2,
+      "change_message": "[]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2024-09-09T10:36:00.535Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "3",
+      "object_repr": "red",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2024-09-09T10:36:13.152Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "5",
+      "object_repr": "yellow",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2024-09-09T10:36:20.235Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "7",
+      "object_repr": "green",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2024-09-09T10:36:27.421Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "8",
+      "object_repr": "black",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2024-09-09T10:36:36.150Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "9",
+      "object_repr": "belts",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2024-09-09T10:37:17.120Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "10",
+      "object_repr": "purple",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2024-09-09T10:42:07.967Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Simple balancer (Otto)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2024-09-09T10:45:37.430Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Late game balancer (Bob)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2024-09-09T10:52:38.236Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Late game balancer (Bob)",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Blueprint image\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2024-09-09T10:53:10.527Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Simple balancer (Otto)",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Blueprint image\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2024-09-09T10:55:14.393Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "11",
+      "object_repr": "unload",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2024-09-09T10:56:00.944Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "12",
+      "object_repr": "load",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2024-09-09T10:56:07.260Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Train loading station (Vincent)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2024-09-09T10:57:22.267Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Train unload station (Vincent)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2024-09-09T10:59:00.322Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Common smelters (Otto)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2024-09-09T11:00:59.022Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "simple red science production (Bob)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2024-09-09T11:02:38.249Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "7",
+      "object_repr": "Mid game purple science (Bob)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2024-09-09T11:05:44.786Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "8",
+      "object_repr": "electric smelters (admin)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2024-09-09T11:09:47.274Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "13",
+      "object_repr": "train",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2024-09-09T11:09:58.907Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "9",
+      "object_repr": "T-Junction (Albert)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2024-09-09T11:11:43.278Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "10",
+      "object_repr": "Crossroads (Albert)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2024-09-09T11:11:50.809Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Train unload station (Vincent)",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2024-09-09T11:11:57.704Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Train loading station (Vincent)",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2024-09-09T11:14:16.212Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "14",
+      "object_repr": "energy",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2024-09-09T11:18:06.276Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "11",
+      "object_repr": "Solar panels (admin)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2024-09-09T11:18:17.677Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "11",
+      "object_repr": "Solar panels (admin)",
+      "action_flag": 2,
+      "change_message": "[]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2024-09-09T11:19:30.106Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "Commentary object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2024-09-09T11:20:03.128Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "2",
+      "object_repr": "Commentary object (2)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2024-09-09T11:20:34.418Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "3",
+      "object_repr": "Commentary object (3)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2024-09-09T11:21:07.311Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "4",
+      "object_repr": "Commentary object (4)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2024-09-09T11:22:21.674Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "5",
+      "object_repr": "Commentary object (5)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add tag",
+      "content_type": 6,
+      "codename": "add_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change tag",
+      "content_type": 6,
+      "codename": "change_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete tag",
+      "content_type": 6,
+      "codename": "delete_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view tag",
+      "content_type": 6,
+      "codename": "view_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 7,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 7,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 7,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 7,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add blueprint",
+      "content_type": 8,
+      "codename": "add_blueprint"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change blueprint",
+      "content_type": 8,
+      "codename": "change_blueprint"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete blueprint",
+      "content_type": 8,
+      "codename": "delete_blueprint"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view blueprint",
+      "content_type": 8,
+      "codename": "view_blueprint"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add commentary",
+      "content_type": 9,
+      "codename": "add_commentary"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change commentary",
+      "content_type": 9,
+      "codename": "change_commentary"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete commentary",
+      "content_type": 9,
+      "codename": "delete_commentary"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view commentary",
+      "content_type": 9,
+      "codename": "view_commentary"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add like",
+      "content_type": 10,
+      "codename": "add_like"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change like",
+      "content_type": 10,
+      "codename": "change_like"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete like",
+      "content_type": 10,
+      "codename": "delete_like"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view like",
+      "content_type": 10,
+      "codename": "view_like"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "bp_manager",
+      "model": "tag"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "bp_manager",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "bp_manager",
+      "model": "blueprint"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "bp_manager",
+      "model": "commentary"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "bp_manager",
+      "model": "like"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "27890t6uiii9wrhi7v38pvchf9lrp38h",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQAP_C2ZDiQtl69O4byLILUjUlKe3J-HdD0oNeZybzVoH2rYS9pTXMoi4K1OmXReJnWrqQBy33qrku2zpH3RN92KZvVdLrerR_g0Kt9C0gkAUymDIKemMndDyYzHwGchzJJ7FWRpoiZScOhozsjBuTFzSiPl_kMDg5:1st3hv:E6Dz3m49QG7zLmjgsPg2oirzTV_RLmdQQmz5MDqeneA",
+      "expire_date": "2024-10-08T11:27:51.748Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "5o7jp927oxbnkc5pqhdb6wofn5viebjg",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQRO_iGln2Zv0JJX3OYK1_OIBsKU4qxN1JpBQgTTXvzbyZo20tbutpcXNkV6bZ5bfzFJ6pHiA-qN4bD62uy-z5ofCTdj61mF630_07KNTLvh5UilYYbUeUkEF4BXtkyBnBG7SIcSQZDAbpIyCIbLywg1WYNEEe2OcLwqY3Dg:1srlTS:C_bq-F_GwsHSuCWEVJ5IdP8CnH2i9peb2CijYNNKRWc",
+      "expire_date": "2024-10-04T21:47:34.987Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "99yy6lehpz62wjm8e9y7kx1tzch2215j",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQRO_iGln2Zv0JJX3OYK1_OIBsKU4qxN1JpBQgTTXvzbyZo20tbutpcXNkV6bZ5bfzFJ6pHiA-qN4bD62uy-z5ofCTdj61mF630_07KNTLvh5UilYYbUeUkEF4BXtkyBnBG7SIcSQZDAbpIyCIbLywg1WYNEEe2OcLwqY3Dg:1srdmh:mxBPYJkgUmyrw1SuUDrER4ynhdfSu7hee8RD83O4jRA",
+      "expire_date": "2024-10-04T13:34:55.539Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dz6h6hsc0zbcpgbiba1ym4p81s7q2wag",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlmJ12a9lPScwVr_cADZUpxUiLuTSCmgfTPz3sLxuhS39jS7KYqLQHH63TyHZ6o7iA-u9yZDq8s8ebkr8qBd3lpMr-vh_h0U7mWr2UYIaAm1AR6Bkh7IZtDkrRpQq2y92ZSztyZpRK-AFEM0MIacMZP4fAG_CzcQ:1srhdm:6MHF9g4Ph_YrQ7ag8h8YTSpn12YqNmmt9_JLo7gaFAA",
+      "expire_date": "2024-10-04T17:41:58.360Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "gth1qkxrpu2314ad8nk6i0o6tjai35ao",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQRO_iGln2Zv0JJX3OYK1_OIBsKU4qxN1JpBQgTTXvzbyZo20tbutpcXNkV6bZ5bfzFJ6pHiA-qN4bD62uy-z5ofCTdj61mF630_07KNTLvh5UilYYbUeUkEF4BXtkyBnBG7SIcSQZDAbpIyCIbLywg1WYNEEe2OcLwqY3Dg:1sr18f:17Nt4g9PaEY_CoSYC-2ktY3PorjnfTP-V22g1b2fP0k",
+      "expire_date": "2024-10-02T20:19:01.509Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "x19njr5qphpuez70ifo3z3hcocucskvt",
+    "fields": {
+      "session_data": ".eJxVjMEOwiAQRP-FsyEsFSoevfcbyC7sStXQpLQn47_bJj3oZQ7z3sxbRVyXEtfGcxyzuipQp9-OMD257iA_sN4nnaa6zCPpXdEHbXqYMr9uh_t3ULCVbU2Z5czkAmSL4lmIgIzvkjUUDAqid2LI4pZwsT6A90Ecdwmw762ozxcbETiu:1snbgT:wU4KVewW4XNjWKfJ5Ih6qGIq2sBiZPpCeFjlrYeiit4",
+      "expire_date": "2024-09-23T10:31:49.583Z"
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$UkRGF2h9A7GBglPVUy3Y27$VdxGGQ9lHwJOcjavv/8gXqbuuop/Vx5z9NX/xzoHxaI=",
+      "last_login": "2024-09-09T10:31:49.579Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@mail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:31:11.587Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$yas7I3Z4XAi1SqPVuCwWoc$o5j091yBNxvSSSaFWX4FD+V9oYgLGxvHfTWPUIezbPQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Otto",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:32:47.957Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$OpQgqrooIrcco7kXlbn3YX$puxX/zq5jkFaADAMf2Z6uhuepj/ByKq6tE/GgPGmkt0=",
+      "last_login": "2024-09-24T11:27:51.745Z",
+      "is_superuser": false,
+      "username": "Vincent",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:32:58.302Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$QCb0YyFMSe0SSt6kPf33Ip$56Bl2T/xjE/LVnFv7k7tZHEr0AUd8wBV36U5p3e36+o=",
+      "last_login": "2024-09-24T11:20:02.083Z",
+      "is_superuser": false,
+      "username": "Albert",
+      "first_name": "",
+      "last_name": "",
+      "email": "albert@mail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:33:16.065Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$3jgpRQAb5r5NhJPCDLd8BB$y6VffIE9dAh2ZnenfQi8TSr9kHH4Sduz5CANHyj+wHk=",
+      "last_login": "2024-09-24T11:26:49.432Z",
+      "is_superuser": false,
+      "username": "Tony",
+      "first_name": "",
+      "last_name": "",
+      "email": "tony@mail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:34:04.136Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$MWak4ZeaAYG4d5JcaZMybo$S16rpViVh4rmtDSJt6PWA1mN8fAuYhGhChHIDBjvCHw=",
+      "last_login": "2024-09-24T00:43:06.710Z",
+      "is_superuser": false,
+      "username": "Bob",
+      "first_name": "",
+      "last_name": "",
+      "email": "bob@mail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-09T10:34:14.638Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$agLvcJPNRW8AHMeA1YmRPN$0HyDN3TdbWN1Zddrz2GwC4hStiwgGV8HGiklfLKEoX4=",
+      "last_login": "2024-09-23T22:57:28.523Z",
+      "is_superuser": false,
+      "username": "OttoLindholm",
+      "first_name": "",
+      "last_name": "",
+      "email": "se1712rega@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-18T20:04:16.081Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 1,
+    "fields": {
+      "name": "balancer"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 2,
+    "fields": {
+      "name": "smelters"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 3,
+    "fields": {
+      "name": "red"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 4,
+    "fields": {
+      "name": "blue"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 5,
+    "fields": {
+      "name": "yellow"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 6,
+    "fields": {
+      "name": "science"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 7,
+    "fields": {
+      "name": "green"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 8,
+    "fields": {
+      "name": "black"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 9,
+    "fields": {
+      "name": "belts"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 10,
+    "fields": {
+      "name": "purple"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 11,
+    "fields": {
+      "name": "unload"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 12,
+    "fields": {
+      "name": "load"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 13,
+    "fields": {
+      "name": "train"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 14,
+    "fields": {
+      "name": "energy"
+    }
+  },
+  {
+    "model": "bp_manager.tag",
+    "pk": 15,
+    "fields": {
+      "name": "All-In"
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "created_time": "2024-09-09T10:42:07.961Z",
+      "title": "Simple balancer",
+      "description": "Classic 4 to 4 balancer.",
+      "blueprint_string": "0eJydltFugzAMRf/Fz+kUh9KuPPY3pmmibVRFogElYRqq+PeF0k0IUiXmCQHx8TXxxbnDqWplY5R2UNxBnWttofi4g1VXXVbDM9c1EgpQTt6AgS5vw50zpbZNbdzmJCsHPQOlL/IHCuw/GUjtlFNyJD0jbFMp56TxjKa2/nWtB7oP2WwZdP6Cb7nnXJSR5/GteJK6L93eTj7U01k6kMd5YsKblbSkZqNMEYNmK6AYg27pUB5j5nRmVOeOwhSJX3RPh0aFvlOYGBS6XUAPdOhMKF/2PF+hNFo+Ip0abSgUSf7ko8YEfyLFS+HSAx+U4qXwzgeUUsyU2vdIcVNwj5YtihQzBVs0oJNipkR/4tRLrR8u5mpqf438S5bcv/mlm3aIm08ATkoTy1K3LpwG11SzNFykGLGimJdJXtaSJbk8S3a5oBgycQ4Jih9TJ7vYDaebx0momBycGHxLYx8x+4xjnu0wxwODqvTp/Mrj/8q+/wWV1CIc",
+      "blueprint_image": "user_2/1.png",
+      "tags": [
+        1,
+        5,
+        9
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 2,
+    "fields": {
+      "user": 6,
+      "created_time": "2024-09-09T10:45:37.414Z",
+      "title": "Late game balancer",
+      "description": "Basic 2 to 4 late game balancer with blue belts",
+      "blueprint_string": "0eJydk+FugyAUhd/l/sZFUWvrqyyLwfZmIUEkcG1qDO8+xKRbtnaG/oML5+McLizQqwmNlZqgXUCeR+2gfV/AyU8t1Fqj2SC0cJWWplBhoMWwFrYdGQfPQOoL3qAtPEtQVj+U3H8wQE2SJG4G4mTu9DT0aAP6rsabsehcRlZoZ0ZLWY+KAt2MLshHvR4dkFnxVjOYt4Ffnf1C8j9IZ5QkCmsPYBsqf4wq093lO+6qZOQesU7I+3/cQ7K3vV40r1/gE+IxIW0eQU/Cnl5uRHQW3rUkHIL8+6cxUCJIQ413VdcLJfQ5+rqidZHDj0XVnHhTlsWhrLn3X2tVN1w=",
+      "blueprint_image": "user_6/2.png",
+      "tags": [
+        1,
+        4,
+        9
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "created_time": "2024-09-09T10:56:07.244Z",
+      "title": "Train loading station",
+      "description": "Mid game train loading station with red belts",
+      "blueprint_string": "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",
+      "blueprint_image": "user_3/3.png",
+      "tags": [
+        1,
+        3,
+        9,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "created_time": "2024-09-09T10:57:22.263Z",
+      "title": "Train unload station",
+      "description": "Similar to load station? but unload :D",
+      "blueprint_string": "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",
+      "blueprint_image": "user_3/4.png",
+      "tags": [
+        1,
+        3,
+        9,
+        11,
+        13
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "created_time": "2024-09-09T10:59:00.306Z",
+      "title": "Common smelters",
+      "description": "Early game stone smelters",
+      "blueprint_string": "0eJydW1tu6zYQ3Yqhb/lCQ5GU6AXcDfSzCArH1k1VOLIgS0WDwAvqOrqxyvGtoMIz5hz+JLATH83rcF70Z/Z6mpp+aLsx231mx+ZyGNp+bM9dtst+GYfpME5Dszk2mx/nabhs+vnn5jS/8c/fr9O4OU6bP5rpW5Znl27fb8fz9m1ojzekv7IdUZ59ZDtTXfOsPZy7S7b79TO7tG/d/nT7l/Gjb+antGPzPgN0+/fbq8t47prtj2no9ocmu32yOzYzmLm+5FnTje3YNnegrxcfv3XT+2szzE9bIMZh31368zBuX5vTOEP350t7V+lLruKb+xKMvrnrNX8AMgtQ212aYZzfe4CgFUSeHduhOdz/6hnAUlDuAbW824sTyqq1cz9FK3jtHAwkmMkrzGQRM1UKQC8BGgaw1tq9lu0eFEIFRCgq1A6gSKASHvJGQDIwUikgrYL9fX86bZvTbI2hPWz784kxPa0Emz/ZtG+/v94OmpnhVOVl/cI9w2KEsqygOBEk43kYSTJehRnPPzFemVPIrWXtBxKDt1/AZA1PHW09J6hJ4IpgWqPnCkXIYnCyOAGphJGsgGSBpGU1p7FxAKJTIXqMtp5VtILJJpmshpEkN2qShEWMXxYAosr4JQHZ9UFGLpGVmjrJSzKyiOpCqZYDpNQwIUBiaZgQINPpMwZFiF/q+UCR06is01J3xWYfa/M6cId6GeBDr+IFtvr08B+SF5AIO5pqFkSfF1xEHH1ecBET2bSKgvHpHB5fiToPjnOrdRh5eRP6tKKCEXfWfC5RQsXKmkAayVX6LEKxcMaJEYQeDydGLSBp0gatMKKJyCHtdVAhgv01FaymeIct2UyTLyykIdJr67yAl1FSrNVAGfAgG5cdnaac8pL9OERfYGcTHyFew4UAyaXhQkBs5/WZgyLU93pCUOQ88vpeexl5SFMnfem0QAmTMF+B5wY7IPJ4GyEKpE8ALmKmCo14VrcqoWmWlKv01RHFgqDC+2YS5gKVPsoXKGEuUCEdMxnVSFRz8NNaxTgkGvXs9KfSnPoWEwzponXmq/V1kIs4t9ZTwUVCrkYa50dF2Ul3iUA+uIOFVA9Z6ydxUiO9s1IwDScCZr6EfkAMlISGQIwUcMa6nASWbd+Cy4nYQWvAGwYSpgghYQ8nzDaCAY8qdiAU8GZaFAjvEUQzOcy1/olr69ugf251czKG9a568Fo/syO4nAhPJJ61n1t9Mux6IqQwSPKYvqSiWGRTkcASodenIoEmwgiCCmhj7TWZkwpNRqG1lgpMcG9H7IyICqS/1ooGbbOVJsR7bNnFCV2GGHpIf/2oK7vUJs3Cwos+4THVQ9n6WbgQ0mRrRdOwI4AmTOi3xXgBttsUPasInMoux0Jgc5WQpYj0fCnWT2Cx9HxZsIQ5CK033ar7O+z0iIBltouJBGyzXcxUq3U2Vokw3r2Fyq3K5BM7GXDBJ1kSXGqEZxLP6vNLAjIpHBI9lrDyk12GM8VId4iANfiCJYx4SLUIpzVKPIuqVuG01lKBCa77DDsdI9UG3IKiaTKLBU2Ity2ii0s9KVws9EpN0eVFXdksWiK3CB99wmOiFwmFcEHuEipFsxp2BMyENuWqlBQvwFKcomcVsBdfsKSrdhYf/BrpAqBNIMXDYMqyyKvSqz+1I+vflaYKRH3u8KKs7DGzWoVP3bEZ3obz/DuGfZf651Xw8zT205ix6AmdvOgwYEFO0UhyCddwhXEFOYAua6y4d5yeOwZE1jOpBJETeKW6gEVOX45ZUOZKz1hp0OT0NVkF6q1nkceQVzt2gP1uzf62k8jv9RQLoNh6wtUgcsIqXjwXgGX8Eq/SbADYxvv/Yb3k9+/q7FbfGcqz037+7Pze96/vBzXdpm+bYbgVR382w+Vun3pOO8FUtq6Doep6/RcYrQpx",
+      "blueprint_image": "user_2/5.png",
+      "tags": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "created_time": "2024-09-09T11:00:59.007Z",
+      "title": "simple red science production",
+      "description": "Early game red sciense, easy to build !",
+      "blueprint_string": "0eJytVsuOmzAU/RXLq44UpxjIY1A37b7qost2FBlzJ7FqbGSbmUYR/14DHSYzQAJpN1EA+/jcx7nHJ5zKEgojlMPJCWdguRGFE1rhBBP0tbQOpYBypkom5RE9QoY+CKMVYipDXBcFGFRI5sDeLX8qgr6VrihdgugWGb/WcgGKw8dcqCVeYMG1sjj5ccJW7BWT9ZnuWIA/TDjI/QrF8vqJlU7nrOZB/kKQgvFfuPIYKoPfOKHVwwKDcsIJaCGbh+NOlXkKxi/owCRLPXKhrWgDO2G/n0TL1QIf2z9VtejtD1/JWAt5KoXak5zxg1BAaB8wOMdbYANcFJdD6R0ZXaYcX2Ecd9uFsmCcf9cPm76lmQlPtP0eDkCuJkCGo4jrAcT1zLSSF/jg5rRupuSli4K+jyIegNx2kDb3wiAg/WojOCm0hAH04Bx9AO9+CsUOJJhSOhrM40ivUKR0AsdgVhZpOAGSjkY91F70VUPPWmegCD+AdReYtrB+MKkW19YLaP2zNwDqfLSIzB9wXz1Ug/mJZ3Z29M+NTafIM5pXkld91rPaMeUI13kqFHP6UlP2q9Mk1Rktdykc2JPw2/2eRyE9zUkm0NoLaewFNzUqa5ui5x4wWInNjaM7fFuJ2ufIHpghzwcAOViB94NAsrwY7+FgRFpT5D+a6Hg40VwYXgq389+yDudRGOt2V/Lej7vrhXas+IYomGkaIsGfcDVLP9GIfsLgimG/TOh4xK+nzKcOJBwBCS+TiK5wiGYIcoxCfKMCV/9fgU0nzNZfuLrRHceyur7NycbgNjMtYjWCs52h2rg/fP39tcl2cnYHX9Rt5yWXYLpEnzsnQN9bJ0Afwri+S98hgr5o7awzrB43T76e7UVgS+NNfL9Zb2iwXq2r6g9OAOVO",
+      "blueprint_image": "user_6/6.png",
+      "tags": [
+        3,
+        6
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 7,
+    "fields": {
+      "user": 6,
+      "created_time": "2024-09-09T11:02:38.235Z",
+      "title": "Mid game purple science",
+      "description": "Production line for purple scince",
+      "blueprint_string": "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",
+      "blueprint_image": "user_6/7.png",
+      "tags": [
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "created_time": "2024-09-09T11:05:44.782Z",
+      "title": "electric smelters",
+      "description": "mid/late game electric smelters, better than solid fuel smelters ..?",
+      "blueprint_string": "0eJylW1Fu4zYQvUqhb3lBUiIp+gC9RBEsnESbCnBkV5aLDRY+0J6jF6scJ7IB80V8w0/H1uPMGz7ODDX5VTxuj+1+6PqxWP8qDv1mvxp3q5ehez5//lmsdVUWb8XahFNZdE+7/lCs/5p+2L30m+35J+Pbvi3WRTe2r0VZ9JvX86d22z6NQ/e0+nEc+s1TW5wf7p/bM97poSzafuzGrr1gvX94+94fXx/bYfoBRimL/e4wPbjrP4yrvtl36/Q3ezqVd1DmCvVzP7SHw2ocNv1hvxvG1WO7He8B3QegigNWYkBgYU04G76GsjPUj81hXHX9oR3G6Ys7HP2BYyacsnjuhmnh929dBNXRHqsP+CpuphcDmjhgI9gvdRwqpFJoGQq1Eu8a4LLWYkQQFW1SXffIdRODrQT7GwRH18kbHO7wqI2WJlObhfjwqpkhUYCuunltn7vj62omdL/bRtjUN2xOj7bdy9+Pu+NwPnKNeYit0LAHiE3a/UEseLARDK8ndWNxDFGzwk9y3RgyZh7HbIq/cbGwGXlOQvzWYkTEb3Ju8ojfmHKNYzVBi8J4+tBJM72RnxAobLzQZkgQt0qxR4JL0UXFpy91gx9D5Cu9T0QPEJnMVS1gJWcuS9HIJy63QCOft9yC68n68cj1mHwqpugLCyYmV30a7vKYjTWfpmY9gvjUvHBmSOB9LVdOAIh8QvpEbAAi0yXNLSFo4Wq5apB5ctUgCr1ge0OHM1IN8jgj1QCXLZ1qzmpcPiStPNdo1GjLJYNiZCs2QyR6Ly/loKly/UBCHZsk7r2PncCWL94SgTMkBXnN0BQi1vGiSrsUyhAVaJldhqhAy+wkJRwEo2u4RCoz5ISolOcj6D1dxt17HxOSk9Rx0Ei+kEuz0mdUcihIPqOUQwR49r5hpiHSD3tXamVjPbGXF3gaNJqez1Pq1vYYpJWoHxTenr1p8F8xa8pGTeSGKLn8/bhbYoLPVm4pXkGiW0Buo9htu7RvdRWjtsmRHOC24dPWFROQ2yQXgzMPPiXVNBkiA91jw2cvtbQbkotBy3mfISxkaoawEKHJOcxD72MpLKRXgnhTRYFzRAV4DTmiAsQGXlRNyrYKGaICrXDIEBVo2IOTJENkX3IxaDkqM+SE/OabKrfgvVbJUvLQ/eh7SMVMPoRFM5Pf6Gq84+N28vXfVZ4gUFrxOrqCQg4sW1l8vtfV0bIN1GxayackDGjdtcoYlABXDFpJZiUMesmtAsmu/4Ldc6xw6aZzZigQGxlTFDBqN3MU6RqGDN+MT5CVcZziMDUecXoz1If5zRmsgAQnl4czFVXSmILO0Bua2dB8RlOLe4IfUkojQDBW4ZaMNRkSg5NK/KjSHQHRvGbSS0S8t+LIOfKC3ObIC5KbkclAO6uJGYpPqDptx2bICw2ZGeZmo1pyPX2AwnKuC0Yo3JLrFS+sO2PjQ4CSKUDMqWAOMNHOHEVBczNmAXGo+GQ1c5F0W6KrDG2BFlxX8lFAA64KtGDKouKYEAxdGHIF/r7DkivwLVtNriB/03y/QlSdgsENT67AS7UhV+B1G8gVBK+m8dEQX0LwplpxS9iMN27w+BGMglxB0fkjGAaZtYvuQqx8pPeC+VBe/h9nffPfPWWx3UzPTn/789wP/vHf70sq/ufYHqYv/22HwyUezbRLg/F10wSj/en0P1IOKiE=",
+      "blueprint_image": "user_1/8.png",
+      "tags": [
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 9,
+    "fields": {
+      "user": 4,
+      "created_time": "2024-09-09T11:09:58.892Z",
+      "title": "T-Junction",
+      "description": "standart t-junction for rails",
+      "blueprint_string": "0eJylW11v4koM/S95TlaZ8Uw++An3ed+uqitoIzYSDSgN1a1W/PdNSIbPEzjuPlVQcrA9to/HNr+j1WZf7dq66aLF7+ijWe6Sbpus2/pteP1/tPBFHH0Nfw5xtFx9bDf7rkqGz+3qZh0tunZfxVH9um0+osW/PUK9bpab4dnua1dFi6juqvcojprl+/CqXdabqEeqm7eqBzeHGDzyWbfdvn/n9NT4ieTnxZP28BJHVdPVXV2N33x88fVfs39fVW0PfX666791/atLjl8eR7vtR//UtpkUtP6oYGIOgzA3KPZK8mQS9R4j+zGhpD98L+Rb3Vav4/8dQJUT6qpeJ9Wm/2xbvya77aYC2OUROe1hm6rXY7Xdt4PGzr8AaMeqLfJAba80HgTJONuJmWw3mA7A5EqNoCyFUiFBIKVSEghi0hPK6779rN7mBHFHjOLamzxC1Lo6NLOxSu0wiihlySGK42wkdjzxlDAS7dKTeliwTKleCVG0Lo1ReJ82o5nk2kw5AqV9PICaa1BBSTS9zgSvv5Z1M59LZcoHxtzmUnSwVuv9Bid6rfvPwND+b8a0bvzzQ7F0Ug+gQhyKOsfDdGb5iFAonKscJpCvEYZ8LR83CmtquQFbU1L6pPMRJn9uTaEjJID65woLHS/BfSBfCM8XCoXpeLEKhf33fNLd+qRB4HQUBffB1qSJxUzSlYQ16XgJoDlhTZ5neEkdHT32JCmCUTMKobBT8wuWjeeXEcYawm48vwg8DKjwOV6IS04grvL2liNxnsfGOHjX4blHYQw6hqzCGNr7h4Elnyu/l4NKhhc9HT0iD2T05+h5WLuPbQXrrgWzCJEOHWPgMaMT8TzxTKBE9ex54lFIqi3ULL7SaylmBoanmDGkLVHv+ULj1yaf/Nre1XuIWz1NNUFiot7LtFRjYb2X0VQTDgXD0BGSGHgoKOwynmp4TL49xWPS8eF5zIxLYkMzZ4DMCI/hA2csSi1R6WZ8bZZD5aGk2trM4r6dlk9mYMx1bpjLCmlICtltUsgQKs8pk3Dl80yT8xHjISg64pwvzjz0G3TEuZpTYDWaqzkFw5xDgygV07PpiH54XqgiWezz5JCrqjAT2tu2uHVMdNyFqld2Br8r8ZCDFnwnADsoasAVfxtKyEELbSiJIdTny7OT+ghG20qegSHnI0nIbHLXD0XeWWh55tZy8Iy1PCNCHIeWZwRWpKWWZ2Zg6NiYaqhbFdFhlHxs8Jh0aAiPSUeG5zE9l3nHi6C450mhpOlmquRvxUSuXWovNEIk2lI9b8QDR/XEcWbkyLeVJz/Mn+toUvMtqpK7jig6a5PyDWYDzwVOAVPttZ+zhJZYBA9PUy2zzOHwgSJQS2w7PlImVKJmNikfKhpZeW5RyGq0t37BU2R+Yi/yEIenFw+1xOsE2trLEbWXuZjp8/1gAVV+bLxFlb7hR/xWYw3tyF/wtJ4f+luNVenoEXkoHd8ky6F00HZWO850RNlorIp3TusE7m41Cy5A8IsA53OCONrJJmdR7WiTs6iWd+Z01hZot9JhnbUVmiMqNKNYA/BBVojDM41CZ9GtzIRJj6M2IAy/EWAVFuVXAoIXYYsqdgIMlA5bVDubcUzlJ1rOcTNrc2TDedp4cwVG0S6WzUlDNs2mHUWfYhTt/d7NLAPqYqEMsXDXCIb5np/2B5vNSKnmDczE/IQ/yDODo72TeJzTnZYb5nC0dZTH2YGfzwd5ZnC0+d/jWHHaO/oMDj9+D/JgP/TkvOTEGT6nOONiCs8vrR9/NXBVv8+schh+Hh/MOKO+2u1x+FxM3R+a8bS97gu8vm7Ug/dBopd4/OHE4uL3GXG0Wa6qTf/ez+SffTMeVhx9Vu3H2IQr+uAobS6Zc6nYw+EP6kNUzQ==",
+      "blueprint_image": "user_4/9.png",
+      "tags": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 10,
+    "fields": {
+      "user": 4,
+      "created_time": "2024-09-09T11:11:43.274Z",
+      "title": "Crossroads",
+      "description": "Complex crossroads. It's work, trust me!",
+      "blueprint_string": "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",
+      "blueprint_image": "user_4/10.png",
+      "tags": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.blueprint",
+    "pk": 11,
+    "fields": {
+      "user": 1,
+      "created_time": "2024-09-09T11:18:06.271Z",
+      "title": "Solar panels",
+      "description": "Green energy!!!!!!",
+      "blueprint_string": "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",
+      "blueprint_image": "user_1/11.png",
+      "tags": [
+        14
+      ]
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "blueprint": 11,
+      "created_time": "2024-09-09T11:19:30.093Z",
+      "content": "No one believes in green energy? :("
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 2,
+    "fields": {
+      "user": 6,
+      "blueprint": 10,
+      "created_time": "2024-09-09T11:20:03.116Z",
+      "content": "It's realy work !"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "blueprint": 4,
+      "created_time": "2024-09-09T11:20:34.393Z",
+      "content": "I used this in my factory"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "blueprint": 1,
+      "created_time": "2024-09-09T11:21:07.310Z",
+      "content": "My first balancer"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "blueprint": 5,
+      "created_time": "2024-09-09T11:22:21.673Z",
+      "content": "I used this in my late game :]"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "blueprint": 10,
+      "created_time": "2024-09-20T16:29:58.420Z",
+      "content": "i like it"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 7,
+    "fields": {
+      "user": 6,
+      "blueprint": 10,
+      "created_time": "2024-09-20T16:30:35.214Z",
+      "content": "i like it"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 8,
+    "fields": {
+      "user": 7,
+      "blueprint": 11,
+      "created_time": "2024-09-20T17:42:18.386Z",
+      "content": "cool"
+    }
+  },
+  {
+    "model": "bp_manager.commentary",
+    "pk": 9,
+    "fields": {
+      "user": 3,
+      "blueprint": 9,
+      "created_time": "2024-09-24T11:37:02.744Z",
+      "content": "good"
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 95,
+    "fields": {
+      "user": 6,
+      "blueprint": 9
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 101,
+    "fields": {
+      "user": 7,
+      "blueprint": 11
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 102,
+    "fields": {
+      "user": 7,
+      "blueprint": 10
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 108,
+    "fields": {
+      "user": 6,
+      "blueprint": 6
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 114,
+    "fields": {
+      "user": 6,
+      "blueprint": 5
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 115,
+    "fields": {
+      "user": 6,
+      "blueprint": 11
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 118,
+    "fields": {
+      "user": 6,
+      "blueprint": 10
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 119,
+    "fields": {
+      "user": 4,
+      "blueprint": 11
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 120,
+    "fields": {
+      "user": 4,
+      "blueprint": 4
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 123,
+    "fields": {
+      "user": 4,
+      "blueprint": 5
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 165,
+    "fields": {
+      "user": 4,
+      "blueprint": 10
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 166,
+    "fields": {
+      "user": 5,
+      "blueprint": 10
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 167,
+    "fields": {
+      "user": 5,
+      "blueprint": 8
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 168,
+    "fields": {
+      "user": 5,
+      "blueprint": 6
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 169,
+    "fields": {
+      "user": 5,
+      "blueprint": 7
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 170,
+    "fields": {
+      "user": 3,
+      "blueprint": 9
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 172,
+    "fields": {
+      "user": 3,
+      "blueprint": 10
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 173,
+    "fields": {
+      "user": 3,
+      "blueprint": 2
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 174,
+    "fields": {
+      "user": 3,
+      "blueprint": 3
+    }
+  },
+  {
+    "model": "bp_manager.like",
+    "pk": 267,
+    "fields": {
+      "user": 3,
+      "blueprint": 1
+    }
+  }
+]

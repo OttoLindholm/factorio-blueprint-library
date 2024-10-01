@@ -1,0 +1,17 @@
+{% extends "includes/form_card.html" %}
+{% load crispy_forms_filters %}
+
+{% block form_title %}
+  <h3>Login</h3>
+{% endblock %}
+
+{% block form_body %}
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-grid justify-content-center">
+      <input type="submit" value="Login" class="btn text-white bg-gradient"/>
+      <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+  </form>
+{% endblock %}

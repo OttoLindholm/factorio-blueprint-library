@@ -1,0 +1,18 @@
+{% load crispy_forms_filters %}
+
+<div class="card-footer my-2 bg-gradient rounded" style="background-color: var(--charcoal3)">
+  <form action="" method="get" class="d-flex align-items-center justify-content-between">
+    <div class="flex-grow-1 me-2">
+      {{ search_form.query|as_crispy_field }}
+    </div>
+    <button class="btn text-white text-center bg-gradient" type="submit">
+      <i class="bx bx-search"></i>
+    </button>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'bp_manager:blueprint-create' %}" class="btn text-white text-center bg-gradient ms-2">
+        <i class='bx bx-plus'></i>
+      </a>
+    {% endif %}
+  </form>
+</div>

@@ -1,0 +1,16 @@
+{% extends "includes/form_card.html" %}
+{% load crispy_forms_filters %}
+
+{% block form_title %}
+  <h3> Update User Info</h3>
+{% endblock %}
+
+{% block form_body %}
+  <form method="post" action="" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-grid justify-content-center">
+      <input type="submit" value="Submit" class="btn text-white bg-gradient shadow"/>
+    </div>
+  </form>
+{% endblock %}
