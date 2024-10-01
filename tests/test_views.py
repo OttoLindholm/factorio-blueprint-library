@@ -147,10 +147,12 @@ class BlueprintCreateViewTest(BaseTestCase):
     def test_create_blueprint(self):
         response = self.client.post(
             reverse("bp_manager:blueprint-create"),
-            {"title": "Test blueprint",
-             "description": "Test description",
-             "blueprint_string": "Test string",
-             "blueprint_image": self.image_file}
+            {
+                "title": "Test blueprint",
+                "description": "Test description",
+                "blueprint_string": "Test string",
+                "blueprint_image": self.image_file,
+            },
         )
 
         self.assertEqual(response.status_code, 302)
@@ -169,14 +171,29 @@ class BlueprintUpdateViewTest(BaseTestCase):
     def test_update_blueprint(self):
         response = self.client.post(
             reverse("bp_manager:blueprint-update", kwargs={"pk": self.blueprint.pk}),
-            {"title": "Updated blueprint",
-             "description": "Test description",
-             "blueprint_string": "Test string",
-             "blueprint_image": self.image_file}
+            {
+                "title": "Updated blueprint",
+                "description": "Test description",
+                "blueprint_string": "Test string",
+                "blueprint_image": self.image_file,
+            },
         )
         self.blueprint.refresh_from_db()
         self.assertEqual(self.blueprint.title, "Updated blueprint")
         self.assertEqual(response.url, Blueprint.objects.first().get_absolute_url())
+
+
+class BlueprintDeleteViewTest(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.login_user()
+
+    def test_delete_commentary(self):
+        response = self.client.post(
+            reverse("bp_manager:blueprint-delete", kwargs={"pk": self.blueprint.pk})
+        )
+        self.assertEqual(Blueprint.objects.count(), 0)
+        self.assertEqual(response.url, reverse("bp_manager:index"))
 
 
 class ToggleLikeViewTests(BaseTestCase):
