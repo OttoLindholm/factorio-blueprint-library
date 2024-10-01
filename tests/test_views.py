@@ -6,7 +6,7 @@ from django.urls import reverse
 from bp_manager.models import Blueprint, User
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
-from bp_manager.views import BlueprintListView, BlueprintDetailView
+from bp_manager.views import BlueprintListView, BlueprintDetailView, ToggleLikeView
 
 BLUEPRINTS_URL = reverse("bp_manager:index")
 
@@ -108,3 +108,37 @@ class BlueprintDetailViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context_data["blueprint"], self.blueprint)
         self.assertIsNotNone(response.context_data["commentary_form"])
+
+
+class ToggleLikeViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        self.blueprint = Blueprint.objects.create(
+            title="Test Blueprint", user=self.user
+        )
+        self.factory = RequestFactory()
+        self.TOGGLE_LIKE_URL = reverse(
+            "bp_manager:toggle-like", kwargs={"pk": self.blueprint.pk}
+        )
+
+    def test_toggle_like_view_like(self):
+        request = self.factory.post(self.TOGGLE_LIKE_URL)
+        request.user = self.user
+
+        response = ToggleLikeView.as_view()(request, pk=self.blueprint.pk)
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(
+            Like.objects.filter(user=self.user, blueprint=self.blueprint).exists()
+        )
+
+    def test_toggle_like_view_unlike(self):
+        Like.objects.create(user=self.user, blueprint=self.blueprint)
+
+        request = self.factory.post(self.TOGGLE_LIKE_URL)
+        request.user = self.user
+
+        response = ToggleLikeView.as_view()(request, pk=self.blueprint.pk)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(
+            Like.objects.filter(user=self.user, blueprint=self.blueprint).exists()
+        )
