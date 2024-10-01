@@ -177,3 +177,26 @@ class UserUpdateViewTests(TestCase):
         updated_user = User.objects.get(pk=self.user.pk)
         self.assertEqual(updated_user.username, "updateduser")
         self.assertEqual(updated_user.email, "updateduser@example.com")
+
+
+class UserDeleteViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        self.client = Client()
+        self.USER_DELETE_URL = reverse(
+            "bp_manager:user-delete", kwargs={"pk": self.user.pk}
+        )
+
+    def test_delete_user(self):
+        self.client.login(username="testuser", password="password")
+        data = {"password": "password"}
+        response = self.client.post(self.USER_DELETE_URL, data)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(User.objects.filter(username="testuser").exists())
+
+    def test_delete_user_incorrect_password(self):
+        self.client.login(username="testuser", password="password")
+        data = {"password": "wrong_password"}
+        response = self.client.post(self.USER_DELETE_URL, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(User.objects.filter(username="testuser").exists())
