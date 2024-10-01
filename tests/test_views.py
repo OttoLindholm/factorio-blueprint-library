@@ -220,3 +220,24 @@ class CommentaryCreateViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commentary.objects.count(), 1)
         self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
+
+
+class CommentaryUpdateViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="12345")
+        self.blueprint = Blueprint.objects.create(
+            title="Test Blueprint", user=self.user
+        )
+        self.commentary = Commentary.objects.create(
+            content="Test commentary", blueprint=self.blueprint, user=self.user
+        )
+        self.client.login(username="testuser", password="12345")
+
+    def test_update_commentary(self):
+        response = self.client.post(
+            reverse("bp_manager:comment-update", kwargs={"pk": self.commentary.pk}),
+            {"content": "Updated commentary"},
+        )
+        self.commentary.refresh_from_db()
+        self.assertEqual(self.commentary.content, "Updated commentary")
+        self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
