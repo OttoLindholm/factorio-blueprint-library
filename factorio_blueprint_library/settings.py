@@ -32,6 +32,10 @@ DEBUG = getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "factorio-blueprint-library.onrender.com"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://factorio-blueprint-library.onrender.com",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
