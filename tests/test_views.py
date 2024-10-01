@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from bp_manager.models import Blueprint, User
 from django.contrib.auth.models import AnonymousUser
-from django.test.client import RequestFactory
+from django.test.client import RequestFactory, Client
 from bp_manager.views import BlueprintListView, BlueprintDetailView, ToggleLikeView
 
 BLUEPRINTS_URL = reverse("bp_manager:index")
@@ -142,3 +142,19 @@ class ToggleLikeViewTests(TestCase):
         self.assertFalse(
             Like.objects.filter(user=self.user, blueprint=self.blueprint).exists()
         )
+
+
+class UserRegisterViewTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_user_registration(self):
+        data = {
+            "username": "newuser",
+            "password1": "strong_password123",
+            "password2": "strong_password123",
+            "email": "newuser@example.com",
+        }
+        response = self.client.post(reverse("bp_manager:user-register"), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(User.objects.filter(username="newuser").exists())
