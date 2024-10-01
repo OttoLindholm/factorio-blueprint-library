@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.sessions.middleware import SessionMiddleware
 
-from bp_manager.models import Like, Tag
+from bp_manager.models import Like, Tag, Commentary
 from django.test import TestCase
 from django.urls import reverse
 from bp_manager.models import Blueprint
@@ -200,3 +200,23 @@ class UserDeleteViewTests(TestCase):
         response = self.client.post(self.USER_DELETE_URL, data)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(User.objects.filter(username="testuser").exists())
+
+
+class CommentaryCreateViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="12345")
+        self.blueprint = Blueprint.objects.create(
+            title="Test Blueprint", user=self.user
+        )
+        self.client.login(username="testuser", password="12345")
+        session = self.client.session
+        session["blueprint_id"] = self.blueprint.id
+        session.save()
+
+    def test_create_commentary(self):
+        response = self.client.post(
+            reverse("bp_manager:add-comment"), {"content": "Test commentary"}
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Commentary.objects.count(), 1)
+        self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
