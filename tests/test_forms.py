@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from bp_manager.forms import CommentaryForm, BlueprintForm
+from bp_manager.forms import CommentaryForm, BlueprintForm, UserRegistrationForm
 from bp_manager.models import Tag
 
 
@@ -21,7 +21,7 @@ class LoggedInUserTestCase(TestCase):
         self.image_file = SimpleUploadedFile(
             name="foo.gif",
             content=b"GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,"
-                    b"\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00",
+            b"\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00",
         )
 
 
@@ -78,4 +78,28 @@ class BlueprintFormTest(LoggedInUserTestCase):
             "new_tags": "",
         }
         form = BlueprintForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+
+class UserRegistrationFormTest(TestCase):
+    def test_valid_registration_form(self):
+        form_data = {
+            "username": "testuser",
+            "email": "test@example.com",
+            "password1": "Password_123",
+            "password2": "Password_123",
+        }
+        form = UserRegistrationForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        user = form.save()
+        self.assertIsNotNone(get_user_model().objects.get(username="testuser"))
+
+    def test_invalid_registration_form(self):
+        form_data = {
+            "username": "",
+            "email": "test@example.com",
+            "password1": "Password_123",
+            "password2": "Password_456",
+        }
+        form = UserRegistrationForm(data=form_data)
         self.assertFalse(form.is_valid())
