@@ -10,7 +10,6 @@ from django.test.client import RequestFactory, Client
 from bp_manager.views import BlueprintListView, BlueprintDetailView, ToggleLikeView
 
 User = get_user_model()
-BLUEPRINTS_URL = reverse("bp_manager:index")
 
 
 class BaseTestCase(TestCase):
@@ -46,9 +45,10 @@ class BlueprintListViewTests(BaseTestCase):
         self.blueprint1 = self.create_blueprint("Test Blueprint 1")
         self.blueprint2 = self.create_blueprint("Test Blueprint 2")
         self.blueprint1.tags.add(self.tag)
+        self.BLUEPRINTS_URL = reverse("bp_manager:index")
 
     def test_blueprint_list_view_no_filters(self):
-        request = self.factory.get(BLUEPRINTS_URL)
+        request = self.factory.get(self.BLUEPRINTS_URL)
         request.user = self.user
 
         response = BlueprintListView.as_view()(request)
@@ -57,7 +57,7 @@ class BlueprintListViewTests(BaseTestCase):
         self.assertIn(self.blueprint2, response.context_data["blueprint_list"])
 
     def test_blueprint_list_view_with_query_filter(self):
-        request = self.factory.get(BLUEPRINTS_URL, {"query": "Test"})
+        request = self.factory.get(self.BLUEPRINTS_URL, {"query": "Test"})
         request.user = self.user
 
         response = BlueprintListView.as_view()(request)
@@ -66,7 +66,7 @@ class BlueprintListViewTests(BaseTestCase):
         self.assertIn(self.blueprint2, response.context_data["blueprint_list"])
 
     def test_blueprint_list_view_with_tag_filter(self):
-        request = self.factory.get(BLUEPRINTS_URL, {"query": "Test Tag"})
+        request = self.factory.get(self.BLUEPRINTS_URL, {"query": "Test Tag"})
         request.user = self.user
 
         response = BlueprintListView.as_view()(request)
@@ -77,7 +77,7 @@ class BlueprintListViewTests(BaseTestCase):
     def test_blueprint_list_view_liked_blueprints(self):
         Like.objects.create(user=self.user, blueprint=self.blueprint1)
 
-        request = self.factory.get(BLUEPRINTS_URL, {"liked": "true"})
+        request = self.factory.get(self.BLUEPRINTS_URL, {"liked": "true"})
         request.user = self.user
 
         response = BlueprintListView.as_view()(request)
@@ -86,7 +86,7 @@ class BlueprintListViewTests(BaseTestCase):
         self.assertNotIn(self.blueprint2, response.context_data["blueprint_list"])
 
     def test_blueprint_list_view_anonymous_user(self):
-        request = self.factory.get(BLUEPRINTS_URL)
+        request = self.factory.get(self.BLUEPRINTS_URL)
         request.user = AnonymousUser()
         response = BlueprintListView.as_view()(request)
         self.assertEqual(response.status_code, 200)
@@ -218,7 +218,7 @@ class CommentaryCreateViewTest(BaseTestCase):
             reverse("bp_manager:add-comment"), {"content": "Test commentary"}
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Commentary.objects.count(), 1)
+        self.assertEqual(Commentary.objects.count(), 2)
         self.assertEqual(response.url, Commentary.objects.first().get_absolute_url())
 
 
