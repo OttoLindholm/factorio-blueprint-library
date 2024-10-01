@@ -1,5 +1,8 @@
+import os
+
 from django.contrib.auth import get_user_model
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from bp_manager.models import Like, Tag, Commentary
 from django.test import TestCase
@@ -25,6 +28,12 @@ class BaseTestCase(TestCase):
             content="Test commentary", blueprint=self.blueprint, user=self.user
         )
         self.factory = RequestFactory()
+
+        self.image_file = SimpleUploadedFile(
+            name="foo.gif",
+            content=b"GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,"
+                    b"\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00",
+        )
 
     def login_user(self):
         self.client.force_login(self.user)
@@ -119,6 +128,31 @@ class BlueprintDetailViewTests(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context_data["blueprint"], self.blueprint)
         self.assertIsNotNone(response.context_data["commentary_form"])
+
+
+class BlueprintCreateViewTest(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.login_user()
+
+    def tearDown(self):
+        blueprint = Blueprint.objects.filter(user=self.user).first()
+        if blueprint and blueprint.blueprint_image:
+            if os.path.exists(blueprint.blueprint_image.path):
+                os.remove(blueprint.blueprint_image.path)
+
+    def test_create_blueprint(self):
+        response = self.client.post(
+            reverse("bp_manager:blueprint-create"),
+            {"title": "Test blueprint",
+             "description": "Test description",
+             "blueprint_string": "Test string",
+             "blueprint_image": self.image_file}
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Blueprint.objects.count(), 2)
+        self.assertEqual(response.url, Blueprint.objects.first().get_absolute_url())
 
 
 class ToggleLikeViewTests(BaseTestCase):
