@@ -13,7 +13,7 @@ from bp_manager.forms import (
 from bp_manager.models import Tag, Blueprint
 
 
-class LoggedInUserTestCase(TestCase):
+class BaseTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = get_user_model().objects.create_user(
@@ -32,7 +32,7 @@ class LoggedInUserTestCase(TestCase):
         )
 
 
-class CommentaryFormTest(LoggedInUserTestCase):
+class CommentaryFormTest(BaseTestCase):
 
     def test_commentary_create_is_valid(self):
         form_data = {
@@ -43,7 +43,7 @@ class CommentaryFormTest(LoggedInUserTestCase):
         self.assertEqual(form.cleaned_data, form_data)
 
 
-class BlueprintFormTest(LoggedInUserTestCase):
+class BlueprintFormTest(BaseTestCase):
     def tearDown(self):
         blueprint = Blueprint.objects.filter(user=self.user).first()
         if blueprint and blueprint.blueprint_image:
@@ -118,7 +118,7 @@ class UserRegistrationFormTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
-class UserUpdateFormTest(LoggedInUserTestCase):
+class UserUpdateFormTest(BaseTestCase):
 
     def test_valid_update_form(self):
         form_data = {
