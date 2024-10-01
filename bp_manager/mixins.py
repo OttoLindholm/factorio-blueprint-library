@@ -1,6 +1,6 @@
-from django.http import HttpResponseForbidden
-
 from bp_manager.models import User
+
+from django.core.exceptions import PermissionDenied
 
 
 class UserIsOwnerMixin:
@@ -9,10 +9,9 @@ class UserIsOwnerMixin:
 
         if isinstance(obj, User):
             if obj != self.request.user:
-                return HttpResponseForbidden("You are not allowed to modify this user.")
-            return obj
+                raise PermissionDenied("You are not allowed to modify this user.")
 
-        if hasattr(obj, "user") and obj.user != self.request.user:
-            return HttpResponseForbidden("You are not allowed to modify this object.")
+        elif hasattr(obj, "user") and obj.user != self.request.user:
+            raise PermissionDenied("You are not allowed to modify this object.")
 
         return obj
