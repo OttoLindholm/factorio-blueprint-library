@@ -220,4 +220,4 @@ class ToggleLikeView(LoginRequiredMixin, View):
 
         if not created:
             like.delete()
-        return redirect(request.META.get("HTTP_REFERER", "bp_manager:index"))
+        return redirect(reverse_lazy("bp_manager:index") + f"#blueprint-{blueprint.pk}")
