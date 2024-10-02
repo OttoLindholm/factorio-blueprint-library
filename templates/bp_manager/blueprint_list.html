@@ -8,7 +8,7 @@
       
       {% for blueprint in blueprint_list %}
         <div class="col-12 col-md-3">
-          <div class="card fixed-square my-2 bg-gradient">
+          <div id="blueprint-{{ blueprint.pk }}" class="card fixed-square my-2 bg-gradient">
             <a class="image-ref" href="{% url 'bp_manager:blueprint-detail' pk=blueprint.pk %}">
               <div class="card-body p-1">
                 <img src="{{ blueprint.blueprint_image.url }}" class="card-img-top" alt="{{ blueprint.title }}">
