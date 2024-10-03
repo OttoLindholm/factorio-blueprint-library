@@ -221,3 +221,8 @@ class ToggleLikeView(LoginRequiredMixin, View):
         if not created:
             like.delete()
         return redirect(reverse_lazy("bp_manager:index") + f"#blueprint-{blueprint.pk}")
+
+    @staticmethod
+    def get(request, pk, *args, **kwargs):
+        blueprint = get_object_or_404(Blueprint, pk=pk)
+        return redirect(reverse_lazy("bp_manager:index") + f"#blueprint-{blueprint.pk}")
